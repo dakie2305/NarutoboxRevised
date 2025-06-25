@@ -28,5 +28,8 @@
 			<HintPath>..\..\worldbox_Data\Managed\UnityEngine.UI.dll</HintPath>
 		</Reference>
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Locales\" />
+	</ItemGroup>
 
 </Project>
