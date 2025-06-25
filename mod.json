@@ -1,0 +1,11 @@
+{
+  "name": "Narutobox Revised",
+  "author": "thien0012001 - Astro2Cold - Darkie",
+  "version": "1.0.0",
+  "description": "This mod adds mostly animes traits, power and characters to the game, and was updated by Darkie.",
+  "iconPath": "icon.png",
+  "Dependencies": [],
+  "startPoint": "Main.cs",
+  "OptionalDependencies": [],
+  "IncompatibleWith": []
+}
