@@ -12,6 +12,30 @@ namespace NarutoboxRevised.Content.Items
 {
     public class CustomItemActions
     {
+        public static bool uchihaFanAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
+                return false;
+            if (Randy.randomChance(0.1f))
+            {
+                //Maybe can improve further
+                ActionLibrary.castFire(pSelf, pTarget, pTile);
+                return true;
+            }
+            return false;
+        }
 
+        public static bool executionerBladeAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
+                return false;
+            if (Randy.randomChance(0.1f))
+            {
+                //Maybe can improve further
+                ActionLibrary.addSlowEffectOnTarget(pSelf, pTarget, pTile);
+                return true;
+            }
+            return false;
+        }
     }
 }
