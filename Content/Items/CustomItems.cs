@@ -54,11 +54,11 @@ namespace NarutoboxRevised.Content.Items
 
             uchihaFan.item_modifier_ids = AssetLibrary<EquipmentAsset>.a(new string[]
              {
-                            "stunned"
+                   "stunned"
              });
 
             uchihaFan.path_slash_animation = "effects/slashes/slash_sword";
-            uchihaFan.path_icon = $"{PathIcon}/icon_uchiha_fan"; 
+            uchihaFan.path_icon = $"{PathIcon}/icon_uchiha_fan";
             uchihaFan.path_gameplay_sprite = $"weapons/{uchihaFan.id}"; //Make sure image share same name as id
             uchihaFan.gameplay_sprites = getWeaponSprites(uchihaFan.id); //Make sure this path is also valid
 
@@ -71,26 +71,26 @@ namespace NarutoboxRevised.Content.Items
 
             #region Executioner blade
             ItemAsset executionerBlade = AssetManager.items.clone("executioners_blade", "$weapon");
-           executionerBlade.id = "executioners_blade";
-           executionerBlade.material = "adamantine"; 
-           executionerBlade.translation_key = "Executioners Blade";
-           executionerBlade.equipment_subtype = "executioners_blade";
-           executionerBlade.group_id = "sword";
-           executionerBlade.animated = false;
-           executionerBlade.is_pool_weapon = false;
-           executionerBlade.unlock(true);
+            executionerBlade.id = "executioners_blade";
+            executionerBlade.material = "adamantine";
+            executionerBlade.translation_key = "Executioners Blade";
+            executionerBlade.equipment_subtype = "executioners_blade";
+            executionerBlade.group_id = "sword";
+            executionerBlade.animated = false;
+            executionerBlade.is_pool_weapon = false;
+            executionerBlade.unlock(true);
 
-           executionerBlade.base_stats = new();
-           executionerBlade.base_stats.set(CustomBaseStatsConstant.Damage, 70f);
-           executionerBlade.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 15f); //Percentage
-           executionerBlade.base_stats.set(CustomBaseStatsConstant.Speed, 10f); //Percentage
-           executionerBlade.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.5f);
-           executionerBlade.base_stats.set(CustomBaseStatsConstant.Knockback, 0.5f);
-           executionerBlade.equipment_value = 4000;
-           executionerBlade.special_effect_interval = 0.4f;
-           executionerBlade.quality = Rarity.R2_Epic;
-           executionerBlade.equipment_type = EquipmentType.Weapon;
-           executionerBlade.name_class = "item_class_weapon";
+            executionerBlade.base_stats = new();
+            executionerBlade.base_stats.set(CustomBaseStatsConstant.Damage, 70f);
+            executionerBlade.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 15f); //Percentage
+            executionerBlade.base_stats.set(CustomBaseStatsConstant.Speed, 10f); //Percentage
+            executionerBlade.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.5f);
+            executionerBlade.base_stats.set(CustomBaseStatsConstant.Knockback, 0.5f);
+            executionerBlade.equipment_value = 4000;
+            executionerBlade.special_effect_interval = 0.4f;
+            executionerBlade.quality = Rarity.R2_Epic;
+            executionerBlade.equipment_type = EquipmentType.Weapon;
+            executionerBlade.name_class = "item_class_weapon";
 
             executionerBlade.path_slash_animation = "effects/slashes/slash_sword";
             executionerBlade.path_icon = $"{PathIcon}/icon_executioners_blade";
