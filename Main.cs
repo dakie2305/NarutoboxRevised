@@ -13,8 +13,10 @@ using NarutoboxRevised.Content.Items;
 
 namespace Narutobox;
 
-public class DarkieTraitsMain : BasicMod<DarkieTraitsMain>, IReloadable
+public class NarutoBoxMain : BasicMod<NarutoBoxMain>, IReloadable
 {
+    public const string Identifier = "darkie"; //Ensure mod compatibility
+
     internal static bool _reload_switch;
 
     /// <summary>

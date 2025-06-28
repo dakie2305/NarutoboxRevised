@@ -117,7 +117,7 @@ namespace NarutoboxRevised.Content.Items
                 return new Sprite[] { sprite };
             else
             {
-                DarkieTraitsMain.LogError("Can not find weapon sprite for weapon with this id: " + id);
+                NarutoBoxMain.LogError("Can not find weapon sprite for weapon with this id: " + id);
                 return Array.Empty<Sprite>();
             }
         }

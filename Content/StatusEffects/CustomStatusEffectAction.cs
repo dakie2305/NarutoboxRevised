@@ -25,6 +25,10 @@ namespace NarutoboxRevised.Content.StatusEffects
             //Gradually damage
             if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
             pTarget.getHit(10, true, AttackType.Fire, null, true, false);
+            if (Randy.randomChance(0.1f))
+            {
+                MapBox.instance.particles_fire.spawn(pTarget.current_position.x, pTarget.current_position.y, true);
+            }
             return true;
         }
         #endregion
