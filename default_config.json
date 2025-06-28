@@ -1,0 +1,10 @@
+{
+  "mod_config_title": [ //Make sure this one exists in locale
+    {
+      "Id": "config_enable_clan_name", //Make sure this one exists in locale
+      "Type": "SWITCH",
+      "BoolVal": false,
+      "Callback": "NarutoBoxConfig:ClanNameEnableSwitchConfigCallBack"
+    }
+  ]
+}

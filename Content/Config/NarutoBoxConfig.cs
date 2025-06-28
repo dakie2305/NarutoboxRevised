@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Narutobox;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace NarutoboxRevised.Content.Config
 
 
         //// This method will be called when config value set. ATTENTION: It might be called when game start.
-        public static void ExampleSwitchConfigCallBack(bool pCurrentValue)
+        public static void ClanNameEnableSwitchConfigCallBack(bool pCurrentValue)
         {
-
+            EnableClanFamilyName = pCurrentValue;
+            NarutoBoxMain.LogInfo($"Set enable clan family name to '{EnableClanFamilyName}'");
         }
 
 
