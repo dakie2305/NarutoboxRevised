@@ -83,6 +83,13 @@ internal static class CustomTraitActions
                 return true;
             }
         }
+
+        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("uchiha", StringComparison.OrdinalIgnoreCase))
+        {
+            //Add prefix clan name: Uchiha
+            renameToClanName("Uchiha", pTarget);
+        }
+
         return false;
     }
 
@@ -167,6 +174,7 @@ internal static class CustomTraitActions
 
     internal static bool cellSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
     {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         // Heal if health is very low
         if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 8)
         {
@@ -177,6 +185,146 @@ internal static class CustomTraitActions
         }
         return true;
     }
+
+    internal static bool sharingan1SpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+
+        var actor = pTarget.a;
+        string sharingan1 = $"{NarutoBoxMain.Identifier}_sharingan_1";
+        string sharingan2 = $"{NarutoBoxMain.Identifier}_sharingan_2";
+
+        // Already has next stage? Skip
+        if (actor.hasTrait(sharingan2))
+            return true;
+
+        bool shouldEvolve = false;
+
+        // Evolution condition 1: Young and rare chance
+        if (actor.getAge() < 35)
+        {
+            shouldEvolve = Randy.randomChance(0.001f);
+        }
+        // Evolution condition 2: Low HP and higher chance
+        else if (actor.data.health < actor.getMaxHealth() / 8f)
+        {
+            shouldEvolve = Randy.randomBool();
+        }
+        if (shouldEvolve)
+        {
+            actor.removeTrait(sharingan1);
+            actor.addTrait(sharingan2);
+            actor.data.health += 500;
+        }
+        return true;
+    }
+
+
+    internal static bool sharingan2SpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+
+        var actor = pTarget.a;
+        string sharingan2 = $"{NarutoBoxMain.Identifier}_sharingan_2";
+        string sharingan3 = $"{NarutoBoxMain.Identifier}_sharingan_3";
+
+        // Already has next stage? Skip
+        if (actor.hasTrait(sharingan3))
+            return true;
+
+        bool shouldEvolve = false;
+
+        // Evolution condition 1
+        if (actor.getAge() < 55 || actor.data.kills > 55)
+        {
+            shouldEvolve = Randy.randomChance(0.0001f);
+        }
+        // Evolution condition 2: Low HP and higher chance
+        else if (actor.data.health < actor.getMaxHealth() / 8f)
+        {
+            shouldEvolve = Randy.randomBool();
+        }
+        if (shouldEvolve)
+        {
+            actor.removeTrait(sharingan2);
+            actor.addTrait(sharingan3);
+            actor.data.health += 700;
+        }
+        return true;
+    }
+
+    internal static bool MangenkyouSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget?.a == null || !pTarget.a.isAlive())
+            return false;
+
+        Actor actor = pTarget.a;
+
+        string trait_sharingan1 = $"{NarutoBoxMain.Identifier}_sharingan_1";
+        string trait_sharingan2 = $"{NarutoBoxMain.Identifier}_sharingan_2";
+        string trait_sharingan3 = $"{NarutoBoxMain.Identifier}_sharingan_3";
+        string trait_itachi = $"{NarutoBoxMain.Identifier}_itachi";
+        string trait_obito = $"{NarutoBoxMain.Identifier}_obito";
+        string trait_senju = $"{NarutoBoxMain.Identifier}_senju";
+        string trait_uchiha = $"{NarutoBoxMain.Identifier}_uchiha";
+
+        // Clean up previous sharingan stages
+        if (actor.hasTrait(trait_sharingan1) || actor.hasTrait(trait_sharingan2))
+        {
+            actor.removeTrait(trait_sharingan1);
+            actor.removeTrait(trait_sharingan2);
+        }
+
+        string name = actor.getName();
+        if (name == "Uchiha Itachi" || name == "Itachi Uchiha")
+        {
+            actor.data.favorite = true;
+            actor.removeTrait(trait_sharingan3);
+            actor.addTrait(trait_itachi);
+            actor.data.health += 1000;
+        }
+        else if (name == "Uchiha Obito" || name == "Obito Uchiha")
+        {
+            actor.data.favorite = true;
+            actor.removeTrait(trait_sharingan3);
+            actor.addTrait(trait_obito);
+            actor.data.health += 1200;
+        }
+        else
+        {
+            // Random rare evolution into Itachi or Obito
+            if (!actor.hasTrait(trait_itachi) && !actor.hasTrait(trait_obito))
+            {
+                if (Randy.randomChance(0.0001f))
+                {
+                    actor.removeTrait(trait_sharingan3);
+                    actor.addTrait(trait_itachi);
+                    actor.data.health += 1000;
+                    actor.data.setName("Uchiha Itachi");
+                }
+                else if (Randy.randomChance(0.0001f))
+                {
+                    actor.removeTrait(trait_sharingan3);
+                    actor.addTrait(trait_obito);
+                    actor.data.health += 1000;
+                    actor.data.setName("Uchiha Obito");
+                }
+            }
+        }
+
+        // Leadership override if leader isn't Senju or Uchiha
+        if (!actor.city.leader.hasTrait(trait_senju) && !actor.city.leader.hasTrait(trait_uchiha))
+        {
+            if (actor.city.kingdom.king != actor)
+            {
+                actor.city.leader = actor;
+                actor.city.leader.setProfession(UnitProfession.Leader);
+                actor.city.data.leaderID = actor.data.id;
+            }
+        }
+        return true;
+    }
+
     #endregion
 
     #region Attack Effect
@@ -202,6 +350,40 @@ internal static class CustomTraitActions
         }
         return true;
     }
+
+    internal static bool sharingan1AttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.05f) && !pTarget.a.hasStatus($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect"))
+        {
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
+            return true;
+        }
+        return false;
+    }
+
+    internal static bool sharingan2AttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.15f) && !pTarget.a.hasStatus($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect"))
+        {
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
+            return true;
+        }
+        return false;
+    }
+
+    internal static bool sharingan3AttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.45f) && !pTarget.a.hasStatus($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect"))
+        {
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
+            return true;
+        }
+        return false;
+    }
+
     #endregion
 
 

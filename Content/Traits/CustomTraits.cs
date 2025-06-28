@@ -37,7 +37,7 @@ internal static class CustomTraits
         {
             id = TraitGroupId,
             name = $"trait_group_{TraitGroupId}",
-            color = "#00f7ff", //TEAL
+            color = "#ff9500",
         };
         // Add trait group to trait group library
         AssetManager.trait_groups.add(group);
@@ -186,6 +186,97 @@ internal static class CustomTraits
         AssetManager.traits.add(uchiha);
         addToLocale(uchiha.id, "Uchiha", "Uchiha Clan! Clan members can have the chance to awake Sharingan trait in the fiercest battle!");
         #endregion
+
+        #region sharingan_1
+        ActorTrait sharingan_1 = new ActorTrait()
+        {
+            id = $"{Identifier}_sharingan_1",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/sharingan_1",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R1_Rare,
+        };
+
+        sharingan_1.base_stats = new BaseStats();
+        sharingan_1.base_stats.set(CustomBaseStatsConstant.Damage, 25f);
+        sharingan_1.base_stats.set(CustomBaseStatsConstant.Armor, 5f);
+        sharingan_1.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.05f);
+        sharingan_1.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        sharingan_1.base_stats.set(CustomBaseStatsConstant.Intelligence, 20f);
+        sharingan_1.base_stats.set(CustomBaseStatsConstant.Speed, 10f);
+
+        sharingan_1.type = TraitType.Positive;
+        sharingan_1.unlock(true);
+
+        sharingan_1.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+        sharingan_1.action_attack_target = new AttackAction(CustomTraitActions.sharingan1AttackEffect);
+        sharingan_1.action_special_effect = (WorldAction)Delegate.Combine(sharingan_1.action_special_effect, new WorldAction(CustomTraitActions.sharingan1SpecialEffect));
+
+        AssetManager.traits.add(sharingan_1);
+        addToLocale(sharingan_1.id, "Sharingan 1", "The Eyes Of The Uchiha! Can slow enemy and make them stop whatever they are doing!", "Have small chance to evolve into Sharingan level 2 in fiercest battles or through sheer luck!");
+        #endregion
+
+        #region sharingan_2
+        ActorTrait sharingan_2 = new ActorTrait()
+        {
+            id = $"{Identifier}_sharingan_2",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/sharingan_2",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R2_Epic,
+        };
+
+        sharingan_2.base_stats = new BaseStats();
+        sharingan_2.base_stats.set(CustomBaseStatsConstant.Damage, 95f);
+        sharingan_2.base_stats.set(CustomBaseStatsConstant.Armor, 10f);
+        sharingan_2.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.05f);
+        sharingan_2.base_stats.set(CustomBaseStatsConstant.Health, 150f);
+        sharingan_2.base_stats.set(CustomBaseStatsConstant.Intelligence, 40f);
+        sharingan_2.base_stats.set(CustomBaseStatsConstant.Speed, 15f);
+
+        sharingan_2.type = TraitType.Positive;
+        sharingan_2.unlock(true);
+
+        sharingan_2.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_3" });
+        sharingan_2.action_attack_target = new AttackAction(CustomTraitActions.sharingan2AttackEffect);
+        sharingan_2.action_special_effect = (WorldAction)Delegate.Combine(sharingan_2.action_special_effect, new WorldAction(CustomTraitActions.sharingan2SpecialEffect));
+
+        AssetManager.traits.add(sharingan_2);
+        addToLocale(sharingan_2.id, "Sharingan 2", "The Stage 2 Sharingan! Can slow enemy and make them stop whatever they are doing!", "Have small chance to evolve into Sharingan level 3 in fiercest battles or killed many people, or through sheer luck!");
+        #endregion
+
+        #region sharingan_3
+        ActorTrait sharingan_3 = new ActorTrait()
+        {
+            id = $"{Identifier}_sharingan_3",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/sharingan_3",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        sharingan_3.base_stats = new BaseStats();
+        sharingan_3.base_stats.set(CustomBaseStatsConstant.Damage, 110f);
+        sharingan_3.base_stats.set(CustomBaseStatsConstant.Armor, 15f);
+        sharingan_3.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.1f);
+        sharingan_3.base_stats.set(CustomBaseStatsConstant.Health, 200f);
+        sharingan_3.base_stats.set(CustomBaseStatsConstant.Intelligence, 100f);
+        sharingan_3.base_stats.set(CustomBaseStatsConstant.Speed, 20f);
+
+        sharingan_3.type = TraitType.Positive;
+        sharingan_3.unlock(true);
+
+        sharingan_3.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2" });
+        sharingan_3.action_attack_target = new AttackAction(CustomTraitActions.sharingan3AttackEffect);
+        sharingan_3.action_special_effect = (WorldAction)Delegate.Combine(sharingan_3.action_special_effect, new WorldAction(CustomTraitActions.MangenkyouSpecialEffect));
+
+        AssetManager.traits.add(sharingan_3);
+        addToLocale(sharingan_3.id, "Sharingan 3", "The last and strongest stage of Sharingan! This is the foundation to become a legend!", "Rename unit to Uchiha Obito or Uchiha Itachi, or add Cell trait to evolve further!");
+        #endregion
+
     }
 
     private static void addToLocale(string id, string name, string description, string description_2 = "")
