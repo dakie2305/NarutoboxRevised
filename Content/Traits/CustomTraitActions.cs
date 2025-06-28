@@ -55,8 +55,7 @@ internal static class CustomTraitActions
 
     internal static bool woodstyleSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
     {
-        if (pTarget?.a == null || !pTarget.a.isAlive())
-            return false;
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         var actor = pTarget.a;
         // Heal if health is very low
         if (Randy.randomChance(0.1f) && actor.data.health < actor.getMaxHealth() / 5)
@@ -112,6 +111,27 @@ internal static class CustomTraitActions
         return true;
     }
 
+
+    internal static bool hashiramaSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        // Heal if health is very low
+        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 2)
+        {
+            pTarget.a.restoreHealth(50);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+        }
+        pTarget.a.removeTrait($"{NarutoBoxMain.Identifier}_woodstyle");
+        if (pTarget.a.data.health <= pTarget.a.getMaxHealth() / 2)
+        {
+            pTarget.a.addStatusEffect("GodBody");
+        }
+        pTarget.a.data.favorite = true; //Always favorite
+        return true;
+    }
+
     #endregion
 
     #region Attack Effect
@@ -151,6 +171,7 @@ internal static class CustomTraitActions
             pTarget.a.data.setName($"{clanName} {actorName}");
         }
     }
+
 
     #endregion
 }

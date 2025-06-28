@@ -85,7 +85,7 @@ internal static class CustomTraits
             path_icon = $"{PathToTraitIcon}/woodstyle",
             rate_birth = NoChance,
             rate_inherit = NoChance,
-            rarity = Rarity.R3_Legendary,
+            rarity = Rarity.R2_Epic,
         };
 
         woodstyle.base_stats = new BaseStats();
@@ -103,7 +103,38 @@ internal static class CustomTraits
         woodstyle.action_special_effect = (WorldAction)Delegate.Combine(woodstyle.action_special_effect, new WorldAction(CustomTraitActions.woodstyleSpecialEffect));
         woodstyle.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
         AssetManager.traits.add(woodstyle);
-        addToLocale(woodstyle.id, "Woodstyle", "Woodstyle No Jutsu! The special abilities of wood user and the ultimate bloodline of Senju!");
+        addToLocale(woodstyle.id, "Woodstyle", "Woodstyle No Jutsu! The true leaders of Senju clan, with special abilities of wood and the ultimate bloodline of Senju!");
+        #endregion
+
+        #region woodstyle
+        ActorTrait hashirama = new ActorTrait()
+        {
+            id = $"{Identifier}_hashirama",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/Hashirama",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        hashirama.base_stats = new BaseStats();
+        hashirama.base_stats.set(CustomBaseStatsConstant.Damage, 800f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Armor, 50f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.3f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.0f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Health, 2000f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.9f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
+
+        hashirama.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+
+        hashirama.type = TraitType.Positive;
+        hashirama.unlock(true);
+        hashirama.action_special_effect = (WorldAction)Delegate.Combine(hashirama.action_special_effect, new WorldAction(CustomTraitActions.hashiramaSpecialEffect));
+        hashirama.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
+        AssetManager.traits.add(hashirama);
+        addToLocale(hashirama.id, "Hashirama", "Senju Hashirama! The Ninja God has appeared!", "Rename someone with Woodstyle trait to Senju Hashirama to get this!");
         #endregion
 
     }
