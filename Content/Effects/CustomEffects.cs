@@ -16,7 +16,7 @@ namespace NarutoboxRevised.Content.Effects
         private static void loadCustomEffects()
         {
             EffectAsset customTeleportEffect = new EffectAsset();
-            customTeleportEffect.id = "fx_DarkieCustomTeleport_effect";
+            customTeleportEffect.id = "fx_MinatoCustomTeleport_effect";
             customTeleportEffect.use_basic_prefab = true;
             customTeleportEffect.sorting_layer_id = "EffectsTop";
             customTeleportEffect.sprite_path = "effects/fx_tele_minato";

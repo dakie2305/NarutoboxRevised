@@ -63,7 +63,7 @@ namespace NarutoboxRevised.Content.StatusEffects
             addToLocale(sharinganEyeEffect.id, "Sharingan Effect", "This person is under genjustu of Sharingan!");
             #endregion
 
-            #region sharingan_eye_1_effect
+            #region amaterasu_effect
             var amaterasuEffect = new StatusAsset()
             {
                 id = $"{Identifier}_amaterasu_effect",
@@ -93,10 +93,44 @@ namespace NarutoboxRevised.Content.StatusEffects
 
             amaterasuEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{amaterasuEffect.texture}", false);
 
-            sharinganEyeEffect.action_on_receive = (WorldAction)Delegate.Combine(sharinganEyeEffect.action_on_receive, new WorldAction(CustomStatusEffectAction.amaterasuSpecialEffect));
+            amaterasuEffect.action_on_receive = (WorldAction)Delegate.Combine(amaterasuEffect.action_on_receive, new WorldAction(CustomStatusEffectAction.amaterasuSpecialEffect));
 
             AssetManager.status.add(amaterasuEffect);
             addToLocale(amaterasuEffect.id, "Amaterasu", "Amaterasu's flames, the most dangerous attack that will not stop until enemies no longer exists!");
+            #endregion
+
+            #region gen_effect
+            var genEffect = new StatusAsset()
+            {
+                id = $"{Identifier}_gen_effect",
+                render_priority = 5,
+                duration = 999f,
+                animated = true,
+                is_animated_in_pause = true,
+                can_be_flipped = true,
+                use_parent_rotation = false,
+                removed_on_damage = false,
+                cancel_actor_job = false,
+                need_visual_render = true,
+                scale = 1.0f,
+                tier = StatusTier.Advanced,
+                material_id = "mat_world_object_lit",
+                material = material,
+                texture = "fx_gen_effect", // Make sure this folder exists in effects/
+                path_icon = "ui/Icons/iconGen",
+            };
+
+            genEffect.locale_id = $"status_title_{genEffect.id}";
+            genEffect.locale_description = $"status_description_{genEffect.id}";
+
+            genEffect.base_stats = new();
+            genEffect.base_stats.set(CustomBaseStatsConstant.Armor, 100f);
+
+            genEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{genEffect.texture}", false);
+
+
+            AssetManager.status.add(genEffect);
+            addToLocale(genEffect.id, "Genjutsu", "Genjutsu effect!");
             #endregion
 
         }

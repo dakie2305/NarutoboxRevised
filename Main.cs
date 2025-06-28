@@ -9,7 +9,6 @@ using UnityEngine;
 using NarutoboxRevised.Content.Traits;
 using NarutoboxRevised.Content.Effects;
 using NarutoboxRevised.Content.StatusEffects;
-using NarutoboxRevised.Content.Units;
 using NarutoboxRevised.Content.Items;
 
 namespace Narutobox;
