@@ -4,6 +4,7 @@ using UnityEngine;
 using NeoModLoader.General;
 using System;
 using Narutobox.Content;
+using Narutobox;
 
 
 namespace NarutoboxRevised.Content.Traits;
@@ -12,7 +13,7 @@ internal static class CustomTraits
 {
     private static string TraitGroupId = "darkie_narutobox_revised";
     private static string PathToTraitIcon = "ui/Icons/actor_traits/narutobox_revised_traits";
-    private static string Identifier = "darkie";
+    private static string Identifier = NarutoBoxMain.Identifier;
 
 
     private static int NoChance = 0;
@@ -21,6 +22,7 @@ internal static class CustomTraits
     private static int MediumChance = 30;
     private static int ExtraChance = 45;
     private static int HighChance = 75;
+    private static int AlwaysChance = 100;
 
     [Hotfixable]
     public static void Init()
@@ -44,12 +46,42 @@ internal static class CustomTraits
 
     private static void loadCustomTrait()
     {
+        //senju clan
+        #region senju
+        ActorTrait senju = new ActorTrait()
+        {
+            id = $"{Identifier}_senju",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/senju",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        senju.base_stats = new BaseStats();
+        senju.base_stats.set(CustomBaseStatsConstant.Damage, 85f);
+        senju.base_stats.set(CustomBaseStatsConstant.Armor, 10f);
+        senju.base_stats.set(CustomBaseStatsConstant.Health, 200f);
+        senju.base_stats.set(CustomBaseStatsConstant.Intelligence, 50f);
+        senju.base_stats.set(CustomBaseStatsConstant.Speed, 15f);
+        senju.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+        senju.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
+
+        senju.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+
+        senju.type = TraitType.Positive;
+        senju.unlock(true);
+        senju.action_special_effect = (WorldAction)Delegate.Combine(senju.action_special_effect, new WorldAction(CustomTraitActions.senjuClanAwakeningSpecialEffect));
+        AssetManager.traits.add(senju);
+        addToLocale(senju.id, "Senju", "Senju Clan! Clan members can have the chance to awake Woodstyle trait in the fiercest battle!");
+        #endregion
 
     }
 
-    private static void addToLocale(string id, string name, string description)
+    private static void addToLocale(string id, string name, string description, string description_2 = "")
     {
         LM.AddToCurrentLocale($"trait_{id}", name);
         LM.AddToCurrentLocale($"trait_{id}_info", description);
+        LM.AddToCurrentLocale($"trait_{id}_info_2", description_2);
     }
 }
