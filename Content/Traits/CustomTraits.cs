@@ -76,6 +76,36 @@ internal static class CustomTraits
         addToLocale(senju.id, "Senju", "Senju Clan! Clan members can have the chance to awake Woodstyle trait in the fiercest battle!");
         #endregion
 
+
+        #region woodstyle
+        ActorTrait woodstyle = new ActorTrait()
+        {
+            id = $"{Identifier}_woodstyle",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/woodstyle",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+        };
+
+        woodstyle.base_stats = new BaseStats();
+        woodstyle.base_stats.set(CustomBaseStatsConstant.Damage, 100f);
+        woodstyle.base_stats.set(CustomBaseStatsConstant.Armor, 15f);
+        woodstyle.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.3f);
+        woodstyle.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.5f);
+        woodstyle.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.3f);
+        woodstyle.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+
+        woodstyle.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+
+        woodstyle.type = TraitType.Positive;
+        woodstyle.unlock(true);
+        woodstyle.action_special_effect = (WorldAction)Delegate.Combine(woodstyle.action_special_effect, new WorldAction(CustomTraitActions.woodstyleSpecialEffect));
+        woodstyle.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
+        AssetManager.traits.add(woodstyle);
+        addToLocale(woodstyle.id, "Woodstyle", "Woodstyle No Jutsu! The special abilities of wood user and the ultimate bloodline of Senju!");
+        #endregion
+
     }
 
     private static void addToLocale(string id, string name, string description, string description_2 = "")

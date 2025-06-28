@@ -311,9 +311,9 @@ namespace NarutoboxRevised.Content.StatusEffects
             #endregion
 
             #region skill1_effect
-            var skill1 = new StatusAsset()
+            var woodStyleEffect = new StatusAsset()
             {
-                id = $"{Identifier}_skill1_effect",
+                id = $"{Identifier}_woodstyle_effect",
                 render_priority = 5,
                 duration = 15f,
                 animated = true,
@@ -331,21 +331,21 @@ namespace NarutoboxRevised.Content.StatusEffects
                 path_icon = "ui/Icons/iconSkill1",
             };
 
-            skill1.locale_id = $"status_title_{skill1.id}";
-            skill1.locale_description = $"status_description_{skill1.id}";
+            woodStyleEffect.locale_id = $"status_title_{woodStyleEffect.id}";
+            woodStyleEffect.locale_description = $"status_description_{woodStyleEffect.id}";
 
-            skill1.base_stats = new();
-            skill1.base_stats.set(CustomBaseStatsConstant.Health, -100f);
-            skill1.base_stats.set(CustomBaseStatsConstant.Speed, -999f);
-            skill1.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -999f);
-            skill1.base_stats.set(CustomBaseStatsConstant.Damage, -300f);
+            woodStyleEffect.base_stats = new();
+            woodStyleEffect.base_stats.set(CustomBaseStatsConstant.Health, -100f);
+            woodStyleEffect.base_stats.set(CustomBaseStatsConstant.Speed, -999f);
+            woodStyleEffect.base_stats.set(CustomBaseStatsConstant.AttackSpeed, -999f);
+            woodStyleEffect.base_stats.set(CustomBaseStatsConstant.Damage, -300f);
 
-            skill1.action_on_receive = (WorldAction)Delegate.Combine(skill1.action_on_receive, new WorldAction(StatusLibrary.poisonedEffect));
+            woodStyleEffect.action_on_receive = (WorldAction)Delegate.Combine(woodStyleEffect.action_on_receive, new WorldAction(StatusLibrary.poisonedEffect));
 
-            skill1.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{skill1.texture}", false);
+            woodStyleEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{woodStyleEffect.texture}", false);
 
-            AssetManager.status.add(skill1);
-            addToLocale(skill1.id, "Woodstyle", "Woodstyle No Jutsu");
+            AssetManager.status.add(woodStyleEffect);
+            addToLocale(woodStyleEffect.id, "Woodstyle", "Woodstyle No Jutsu");
             #endregion
 
         }
