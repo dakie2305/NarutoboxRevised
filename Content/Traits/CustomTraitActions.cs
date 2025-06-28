@@ -48,8 +48,41 @@ internal static class CustomTraitActions
             //Add prefix clan name: Senju
             renameToClanName("Senju", pTarget);
         }
+        return false;
+    }
 
-
+    internal static bool uchihaClanAwakeningSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        pTarget.a.removeTrait("peaceful");
+        if (
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_woodstyle") || 
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_hashirama") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_sharingan_1") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_sharingan_2") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_sharingan_3") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_itachi") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_obito") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_madara") ||
+            pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_full_form")
+            )
+            return false;
+        //Awaken age range
+        if (pTarget.a.data.getAge() > 10 && pTarget.a.data.getAge() <= 40)
+        {
+            if (pTarget.a.data.kills > 25)
+            {
+                pTarget.a.addTrait($"{NarutoBoxMain.Identifier}_sharingan_1");
+                pTarget.a.data.health += 500;
+                return true;
+            }
+            else if(Randy.randomChance(0.05f) || pTarget.a.data.health < pTarget.a.getMaxHealth() / 10)
+            {
+                pTarget.a.addTrait($"{NarutoBoxMain.Identifier}_sharingan_1");
+                pTarget.a.data.health += 500;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -132,6 +165,18 @@ internal static class CustomTraitActions
         return true;
     }
 
+    internal static bool cellSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        // Heal if health is very low
+        if (pTarget.a.data.health < pTarget.a.getMaxHealth() / 8)
+        {
+            pTarget.a.restoreHealth(20);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+        }
+        return true;
+    }
     #endregion
 
     #region Attack Effect
@@ -171,6 +216,10 @@ internal static class CustomTraitActions
             pTarget.a.data.setName($"{clanName} {actorName}");
         }
     }
+
+
+
+
 
 
     #endregion
