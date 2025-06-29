@@ -17,6 +17,7 @@ namespace NarutoboxRevised.Content.Config
         private int HighChance = 75;
 
         public static bool EnableClanFamilyName { get; set; } = false;
+        public static bool UnlockLegendTraits { get; set; } = false;
 
 
         //// This method will be called when config value set. ATTENTION: It might be called when game start.
@@ -26,6 +27,11 @@ namespace NarutoboxRevised.Content.Config
             NarutoBoxMain.LogInfo($"Set enable clan family name to '{EnableClanFamilyName}'");
         }
 
+        public static void UnlockLegendTraitsSwitchConfigCallBack(bool pCurrentValue)
+        {
+            UnlockLegendTraits = pCurrentValue;
+            NarutoBoxMain.LogInfo($"Set unlock legend traits to '{UnlockLegendTraits}'");
+        }
 
     }
 }

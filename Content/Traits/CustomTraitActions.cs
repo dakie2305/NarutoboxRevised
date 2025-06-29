@@ -325,6 +325,18 @@ internal static class CustomTraitActions
         return true;
     }
 
+    internal static bool kamuiSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (pTarget.a.data.health <= pTarget.a.getMaxHealth() / 5 && Randy.randomChance(0.3f))
+        {
+            ActionLibrary.teleportRandom(pTarget, pTarget, pTile);
+            ActionLibrary.castBloodRain(pTarget, pTarget, pTile);
+            return true;
+        }
+        return false;
+    }
+
     #endregion
 
     #region Attack Effect
@@ -384,6 +396,67 @@ internal static class CustomTraitActions
         return false;
     }
 
+    internal static bool itachiSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.1f))
+        {
+            pTarget.addStatusEffect($"{NarutoBoxMain.Identifier}_amaterasu_effect"); //spam Amaterasu
+        }
+        else if (Randy.randomChance(0.3f))
+        {
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
+        }
+        else if (Randy.randomChance(0.2f))
+        {
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_gen_effect");
+        }
+
+        return true;
+    }
+
+    internal static bool obitoSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        //He can use sharingan
+        if (Randy.randomChance(0.3f))
+        {
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
+        }
+        else if (Randy.randomChance(0.3f))
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_kamui_effect");
+        //he can banish other to somewhere else
+        else if (Randy.randomChance(0.02f))
+            ActionLibrary.teleportRandom(pSelf, pTarget, null);
+        return true;
+    }
+
+
+    internal static bool madaraSpecialAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        Actor a = pSelf.a;
+        if (a.data.health <= (a.getMaxHealth() / 2))
+        {
+            if (Randy.randomChance(0.2f))
+                a.addStatusEffect($"{NarutoBoxMain.Identifier}_full_susano_effect");
+        }
+        if (Randy.randomChance(0.1f))
+        {
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire");
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire");
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "acid");
+        }
+        if (Randy.randomChance(0.2f))
+        {
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 1f);
+            World.world.applyForceOnTile(pTile: pTarget.current_tile, pByWho: pSelf);
+            return true;
+        }
+
+        return true;
+    }
+
     #endregion
 
 
@@ -398,6 +471,23 @@ internal static class CustomTraitActions
             pTarget.a.data.setName($"{clanName} {actorName}");
         }
     }
+
+    internal static bool obitoDeathEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        Actor a = pTarget.a;
+        var act = World.world.units.createNewUnit(a.asset.id, pTile);
+        if (pTarget.kingdom != null)
+            act.kingdom = pTarget.kingdom;
+        ActorTool.copyUnitToOtherUnit(a, act);
+        act.removeTrait($"{NarutoBoxMain.Identifier}_obito");
+        act.addTrait($"{NarutoBoxMain.Identifier}_madara", true);
+        act.data.health += 1300;
+        ActionLibrary.castLightning(pTarget, act, null);
+        EffectsLibrary.spawn("fx_spawn", act.current_tile);
+        return true;
+    }
+
+
 
 
 

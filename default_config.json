@@ -5,6 +5,12 @@
       "Type": "SWITCH",
       "BoolVal": false,
       "Callback": "NarutoBoxConfig:ClanNameEnableSwitchConfigCallBack"
+    },
+    {
+      "Id": "config_unlock_all_legend_traits", //Make sure this one exists in locale
+      "Type": "SWITCH",
+      "BoolVal": false,
+      "Callback": "NarutoBoxConfig:UnlockLegendTraitsSwitchConfigCallBack"
     }
   ]
 }

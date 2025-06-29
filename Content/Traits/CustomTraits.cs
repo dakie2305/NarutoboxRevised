@@ -1,10 +1,11 @@
-﻿using NeoModLoader.api.attributes;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Narutobox;
+using Narutobox.Content;
+using NarutoboxRevised.Content.Config;
+using NeoModLoader.api.attributes;
 using NeoModLoader.General;
 using System;
-using Narutobox.Content;
-using Narutobox;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace NarutoboxRevised.Content.Traits;
@@ -12,6 +13,7 @@ namespace NarutoboxRevised.Content.Traits;
 internal static class CustomTraits
 {
     private static string TraitGroupId = "darkie_narutobox_revised";
+    private static string TraitGroupId2 = "darkie_narutobox_revised_legend";
     private static string PathToTraitIcon = "ui/Icons/actor_traits/narutobox_revised_traits";
     private static string Identifier = NarutoBoxMain.Identifier;
 
@@ -41,7 +43,15 @@ internal static class CustomTraits
         };
         // Add trait group to trait group library
         AssetManager.trait_groups.add(group);
-        LM.AddToCurrentLocale($"{group.name}", $"Narutobox Traits");
+
+        ActorTraitGroupAsset group2 = new ActorTraitGroupAsset()
+        {
+            id = TraitGroupId2,
+            name = $"trait_group_{TraitGroupId}",
+            color = "#ff9500",
+        };
+        // Add trait group to trait group library
+        AssetManager.trait_groups.add(group2);
     }
 
     private static void loadCustomTrait()
@@ -110,11 +120,12 @@ internal static class CustomTraits
         ActorTrait hashirama = new ActorTrait()
         {
             id = $"{Identifier}_hashirama",
-            group_id = TraitGroupId,
+            group_id = TraitGroupId2,
             path_icon = $"{PathToTraitIcon}/Hashirama",
             rate_birth = NoChance,
             rate_inherit = NoChance,
             rarity = Rarity.R3_Legendary,
+            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
         };
 
         hashirama.base_stats = new BaseStats();
@@ -276,6 +287,141 @@ internal static class CustomTraits
         AssetManager.traits.add(sharingan_3);
         addToLocale(sharingan_3.id, "Sharingan 3", "The last and strongest stage of Sharingan! This is the foundation to become a legend!", "Rename unit to Uchiha Obito or Uchiha Itachi, or add Cell trait to evolve further!");
         #endregion
+
+        #region itachi
+        ActorTrait itachi = new ActorTrait()
+        {
+            id = $"{Identifier}_itachi",
+            group_id = TraitGroupId2,
+            path_icon = $"{PathToTraitIcon}/itachi",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
+        };
+
+        itachi.base_stats = new BaseStats();
+        itachi.base_stats.set(CustomBaseStatsConstant.Damage, 100f);
+        itachi.base_stats.set(CustomBaseStatsConstant.Armor, 20f);
+        itachi.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.5f);
+        itachi.base_stats.set(CustomBaseStatsConstant.Health, 2000f);
+        itachi.base_stats.set(CustomBaseStatsConstant.Intelligence, 150f);
+        itachi.base_stats.set(CustomBaseStatsConstant.Speed, 25f);
+
+        itachi.type = TraitType.Positive;
+        itachi.unlock(true);
+
+        itachi.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_obito", $"{Identifier}_madara", $"{Identifier}_final_form" });
+
+        itachi.action_attack_target = new AttackAction(CustomTraitActions.itachiSpecialAttack);
+
+        AssetManager.traits.add(itachi);
+        addToLocale(itachi.id, "Itachi", "The Uchiha Itachi! Extremely deadly legend with supreme Black Fire attack!", "Unlock by evolving to Sharingan 3 and renaming to Uchiha Itachi!");
+        #endregion
+
+        #region obito
+        ActorTrait obito = new ActorTrait()
+        {
+            id = $"{Identifier}_obito",
+            group_id = TraitGroupId2,
+            path_icon = $"{PathToTraitIcon}/obito",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
+        };
+
+        obito.base_stats = new BaseStats();
+        obito.base_stats.set(CustomBaseStatsConstant.Damage, 100f);
+        obito.base_stats.set(CustomBaseStatsConstant.Armor, 20f);
+        obito.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.5f);
+        obito.base_stats.set(CustomBaseStatsConstant.Health, 2200f);
+        obito.base_stats.set(CustomBaseStatsConstant.Intelligence, 150f);
+        obito.base_stats.set(CustomBaseStatsConstant.Speed, 25f);
+
+        obito.type = TraitType.Positive;
+        obito.unlock(true);
+
+        obito.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_madara", $"{Identifier}_final_form" });
+
+
+        obito.action_attack_target = new AttackAction(CustomTraitActions.obitoSpecialAttack);
+        obito.action_special_effect = (WorldAction)Delegate.Combine(obito.action_special_effect, new WorldAction(CustomTraitActions.kamuiSpecialEffect));
+        obito.action_death = new WorldAction(CustomTraitActions.obitoDeathEffect);
+
+        AssetManager.traits.add(obito);
+        addToLocale(obito.id, "Obito", "The Uchiha Obito! Extremely powerful and can be evasive, will become Madara if defeated!", "Unlock by evolving to Sharingan 3 and renaming to Uchiha Obito!");
+        #endregion
+
+        #region madara
+        ActorTrait madara = new ActorTrait()
+        {
+            id = $"{Identifier}_madara",
+            group_id = TraitGroupId2,
+            path_icon = $"{PathToTraitIcon}/madara",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
+        };
+
+        madara.base_stats = new BaseStats();
+        madara.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 1.5f);
+        madara.base_stats.set(CustomBaseStatsConstant.Armor, 25f);
+        madara.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 2.0f);
+        madara.base_stats.set(CustomBaseStatsConstant.Speed, 50f);
+        madara.base_stats.set(CustomBaseStatsConstant.Health, 5500f);
+        madara.base_stats.set(CustomBaseStatsConstant.Intelligence, 250f);
+        madara.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
+        madara.base_stats.set(CustomBaseStatsConstant.Mana, 100f);
+
+        madara.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", $"{Identifier}_final_form" });
+
+        madara.type = TraitType.Positive;
+        madara.unlock(true);
+
+        madara.action_attack_target = new AttackAction(CustomTraitActions.madaraSpecialAttack);
+        madara.action_special_effect = (WorldAction)Delegate.Combine(madara.action_special_effect, new WorldAction(CustomTraitActions.madaraSpecialEffect));
+        madara.action_special_effect = (WorldAction)Delegate.Combine(madara.action_special_effect, new WorldAction(CustomTraitActions.regenerationEffect));
+
+        AssetManager.traits.add(madara);
+        addToLocale(madara.id, "Madara", "The Uchiha Legend — Madara!", "Unlock by combine Sharingan 3 with Hashirama Cell, or defeating Obito!");
+        #endregion
+
+        #region madara_final_form
+        ActorTrait madaraFinal = new ActorTrait()
+        {
+            id = $"{Identifier}_final_form",
+            group_id = TraitGroupId2,
+            path_icon = $"{PathToTraitIcon}/rinengan",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
+        };
+
+        madaraFinal.base_stats = new BaseStats();
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Damage, 800f);
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Armor, 70f);
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 5.0f); // 500%
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Health, 8500f);
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Intelligence, 300f);
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Speed, 80f);
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
+        madaraFinal.base_stats.set(CustomBaseStatsConstant.Range, 10f);
+
+        madaraFinal.type = TraitType.Positive;
+        madaraFinal.unlock(true);
+
+        madara.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", $"{Identifier}_madara" });
+
+        madaraFinal.action_attack_target = new AttackAction(CustomTraitActions.tengaiShinseiAttack);
+        madaraFinal.action_special_effect = (WorldAction)Delegate.Combine(madaraFinal.action_special_effect, new WorldAction(CustomTraitActions.blackSphereEffect));
+
+        AssetManager.traits.add(madaraFinal);
+        addToLocale(madaraFinal.id, "Madara Final Form", "God of War! Madara in his Rinnegan-powered final form!", "Fuse Madara with Hashirama's cell to unlock this!");
+        #endregion
+
 
     }
 
