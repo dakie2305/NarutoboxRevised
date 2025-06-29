@@ -4,6 +4,6 @@
   "mod_config_title": "Mods Options",
   "config_enable_clan_name": "Enable Clan Prefix Name",
   "config_unlock_all_legend_traits": "Unlock All Legend Traits",
-  "config_enable_clan_name Description": "If enabled, unit's name will start with Clan Name.",
-  "config_unlock_all_legend_traits Description": "If enabled, all legend traits will be unlocked and can be given freely."
+  "config_enable_clan_name Description": "If enabled, unit's name will start with Clan Name. Restart the game so new changes can take effect!",
+  "config_unlock_all_legend_traits Description": "If enabled, all legend traits will be unlocked and can be given freely. Restart the game so new changes can take effect!"
 }

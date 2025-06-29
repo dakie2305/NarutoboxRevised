@@ -111,22 +111,17 @@ internal static class CustomTraitActions
         if (actor.hasTrait(hashiramaTrait))
             return false;
 
-        if (actor.data.level >= 5)
+        string actorName = actor.getName();
+        if (actorName == "Hashirama Senju" || actorName == "Senju Hashirama")
         {
-            actor.data.favorite = true;
-
-            string actorName = actor.getName();
-            if (actorName == "Hashirama Senju" || actorName == "Senju Hashirama")
-            {
-                actor.addTrait(hashiramaTrait);
-                actor.data.health += 2500;
-            }
-            else if (Randy.randomChance(0.001f))
-            {
-                actor.data.setName("Senju Hashirama");
-                actor.addTrait(hashiramaTrait);
-                actor.data.health += 2500;
-            }
+            actor.addTrait(hashiramaTrait);
+            actor.data.health += 2500;
+        }
+        else if (Randy.randomChance(0.001f))
+        {
+            actor.data.setName("Senju Hashirama");
+            actor.addTrait(hashiramaTrait);
+            actor.data.health += 2500;
         }
 
         // Leadership influence based on woodstyle
@@ -311,6 +306,9 @@ internal static class CustomTraitActions
                 }
             }
         }
+
+        if (actor.city == null || actor.city.leader == null || actor.kingdom == null || actor.kingdom.king == null)
+            return false;
 
         // Leadership override if leader isn't Senju or Uchiha
         if (!actor.city.leader.hasTrait(trait_senju) && !actor.city.leader.hasTrait(trait_uchiha))
