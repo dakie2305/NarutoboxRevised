@@ -47,8 +47,8 @@ internal static class CustomTraits
         ActorTraitGroupAsset group2 = new ActorTraitGroupAsset()
         {
             id = TraitGroupId2,
-            name = $"trait_group_{TraitGroupId}",
-            color = "#ff9500",
+            name = $"trait_group_{TraitGroupId2}",
+            color = "#fc0303",
         };
         // Add trait group to trait group library
         AssetManager.trait_groups.add(group2);
@@ -382,10 +382,9 @@ internal static class CustomTraits
 
         madara.action_attack_target = new AttackAction(CustomTraitActions.madaraSpecialAttack);
         madara.action_special_effect = (WorldAction)Delegate.Combine(madara.action_special_effect, new WorldAction(CustomTraitActions.madaraSpecialEffect));
-        madara.action_special_effect = (WorldAction)Delegate.Combine(madara.action_special_effect, new WorldAction(CustomTraitActions.regenerationEffect));
 
         AssetManager.traits.add(madara);
-        addToLocale(madara.id, "Madara", "The Uchiha Legend — Madara!", "Unlock by combine Sharingan 3 with Hashirama Cell, or defeating Obito!");
+        addToLocale(madara.id, "Madara", "The Uchiha Legend — Madara!", "Unlock by defeating Obito!");
         #endregion
 
         #region madara_final_form
@@ -413,10 +412,9 @@ internal static class CustomTraits
         madaraFinal.type = TraitType.Positive;
         madaraFinal.unlock(true);
 
-        madara.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", $"{Identifier}_madara" });
+        madaraFinal.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", $"{Identifier}_madara" });
 
         madaraFinal.action_attack_target = new AttackAction(CustomTraitActions.tengaiShinseiAttack);
-        madaraFinal.action_special_effect = (WorldAction)Delegate.Combine(madaraFinal.action_special_effect, new WorldAction(CustomTraitActions.blackSphereEffect));
 
         AssetManager.traits.add(madaraFinal);
         addToLocale(madaraFinal.id, "Madara Final Form", "God of War! Madara in his Rinnegan-powered final form!", "Fuse Madara with Hashirama's cell to unlock this!");

@@ -337,6 +337,36 @@ internal static class CustomTraitActions
         return false;
     }
 
+    internal static bool madaraSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+
+        Actor a = pTarget.a;
+        a.removeTrait($"{NarutoBoxMain.Identifier}_obito");
+        a.data.setName("Uchiha Madara");
+
+        a.data.favorite = true;
+        if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))
+        {
+            a.addTrait($"{NarutoBoxMain.Identifier}_final_form");
+            a.removeTrait($"{NarutoBoxMain.Identifier}_madara");
+            a.data.health += 8000;
+        }
+
+        if (Randy.randomChance(0.2f))
+        {
+            pTarget.a.restoreHealth(25);
+            pTarget.a.spawnParticle(Toolbox.color_heal);
+        }
+
+        if (a.attackedBy != null)
+        {
+            a.addStatusEffect($"{NarutoBoxMain.Identifier}_half_susano_effect");
+        }
+        return true;
+    }
+
+
     #endregion
 
     #region Attack Effect
@@ -457,6 +487,47 @@ internal static class CustomTraitActions
         return true;
     }
 
+    internal static bool tengaiShinseiAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (Randy.randomChance(0.05f))       //default 0.009f
+        {
+            ActionLibrary.unluckyMeteorite(pTarget);    //spawn 1 meteorite
+            pSelf.a.addStatusEffect("invincible", 5f);
+            pSelf.a.makeWait(10);
+        }
+
+        //shinra tensei
+        if (Randy.randomChance(0.1f))
+        {
+            EffectsLibrary.spawn("fx_nuke_flash", pTarget.current_tile);    //flash
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 1f);
+            World.world.applyForceOnTile(pTile: pTarget.current_tile, pByWho: pSelf);
+        }
+
+        //Black shield
+        if (Randy.randomChance(0.1f))
+        {
+            pSelf.a.addStatusEffect($"{NarutoBoxMain.Identifier}_black_shield_effect");
+        }
+
+        //switch place with target
+        if (pSelf.a.isAttackReady())
+        {
+
+            if (Randy.randomChance(0.4f))
+            {
+                WorldTile targetTile = pTarget.current_tile;
+                WorldTile selfTile = pSelf.current_tile;
+                teleportToSpecificLocation(pSelf, pSelf, targetTile);
+                teleportToSpecificLocation(pSelf, pTarget, selfTile);
+                pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
+            }
+        }
+        return true;
+    }
+
+
     #endregion
 
 
@@ -487,7 +558,13 @@ internal static class CustomTraitActions
         return true;
     }
 
-
+    public static bool teleportToSpecificLocation(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile, string text = "fx_teleport_blue")
+    {
+        EffectsLibrary.spawnAt(text, pTile.pos, 0.1f);
+        pTarget.a.cancelAllBeh();
+        pTarget.a.spawnOn(pTile, 0f);
+        return true;
+    }
 
 
 
