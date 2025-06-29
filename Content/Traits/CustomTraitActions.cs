@@ -161,7 +161,7 @@ internal static class CustomTraitActions
         pTarget.a.removeTrait($"{NarutoBoxMain.Identifier}_woodstyle");
         if (pTarget.a.data.health <= pTarget.a.getMaxHealth() / 2)
         {
-            pTarget.a.addStatusEffect("GodBody");
+            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_god_body_effect");
         }
         pTarget.a.data.favorite = true; //Always favorite
         return true;
