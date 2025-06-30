@@ -37,5 +37,31 @@ namespace NarutoboxRevised.Content.Items
             }
             return false;
         }
+
+        internal static bool samehadaAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
+                return false;
+            if (Randy.randomChance(0.1f))
+            {
+                //Maybe can improve further
+                ActionLibrary.addSlowEffectOnTarget(pSelf, pTarget, pTile);
+                ActionLibrary.addStunnedEffectOnTarget(pSelf, pTarget, pTile);
+                return true;
+            }
+            return false;
+        }
+
+        internal static bool kusanagiAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+        {
+            if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive())
+                return false;
+            if (Randy.randomChance(0.1f))
+            {
+                ActionLibrary.breakBones(pSelf, pTarget, pTile);
+                return true;
+            }
+            return false;
+        }
     }
 }

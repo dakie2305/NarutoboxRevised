@@ -23,6 +23,10 @@
   "uchiha_fan_description": "One of the signature weapon for the most dangerous Uchiha members!",
   "Executioners Blade": "Executioners Blade",
   "executioners_blade_description": "The one and only Decapitating Carving Knife. A giant sword with a butcher-knife-like appearance!",
+  "Samehada": "Samehada",
+  "samehada_description": "The one and only living sword! Will stun and slow enemies down!",
+  "Kusanagi": "Kusanagi",
+  "kusanagi_description": "A legendary Japanese sword and one of three Imperial Regalia! Can break the bone of enemies!",
 
   //CustomStatusEffects(.locale_id .locale_description)
   "status_title_darkie_sharingan_eye_1_effect": "Sharingan Effect",

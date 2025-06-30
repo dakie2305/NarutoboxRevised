@@ -426,8 +426,9 @@ internal static class CustomTraits
 
     private static void addToLocale(string id, string name, string description, string description_2 = "")
     {
-        LM.AddToCurrentLocale($"trait_{id}", name);
-        LM.AddToCurrentLocale($"trait_{id}_info", description);
-        LM.AddToCurrentLocale($"trait_{id}_info_2", description_2);
+        //This is no longer needed since I have locales folder
+        //LM.AddToCurrentLocale($"trait_{id}", name);
+        //LM.AddToCurrentLocale($"trait_{id}_info", description);
+        //LM.AddToCurrentLocale($"trait_{id}_info_2", description_2);
     }
 }
