@@ -51,6 +51,8 @@
   //CustomTraits(group.name)
   "trait_group_darkie_narutobox_revised": "火影忍者盒-普通特質",
   "trait_group_darkie_narutobox_revised_legend": "火影忍者盒-傳奇特質",
+  "trait_group_darkie_narutobox_revised_shinobi": "Narutobox Shinobi Attributes",
+  "trait_group_darkie_narutobox_revised_chakra": "Narutobox Chakra Natures",
   //CustomTraits(id id_info id_info_2)
   "trait_darkie_senju": "千手",
   "trait_darkie_senju_info": "千手一族，有可能會在激烈戰鬥中領悟木遁!",
@@ -87,6 +89,18 @@
   "trait_darkie_madara_info_2": "帶土被擊敗時出現",
   "trait_darkie_final_form": "斑-最終形態",
   "trait_darkie_final_form_info": "在輪迴眼最終形態下的斑，無愧傳奇之名!",
-  "trait_darkie_final_form_info_2": "斑獲得柱間細胞登臨最終"
+  "trait_darkie_final_form_info_2": "斑獲得柱間細胞登臨最終",
 
+  "trait_darkie_rank_academy_student": "Academy Student",
+  "trait_darkie_rank_academy_student_info": "A trainee at the ninja academy.",
+  "trait_darkie_rank_academy_student_info_2": "Begin your ninja journey. Can evolve to Genin after kill two enemies!",
+  "trait_darkie_rank_genin": "Genin",
+  "trait_darkie_rank_genin_info": "A low-rank shinobi.",
+  "trait_darkie_rank_genin_info_2": "Graduated from the academy! Can evolve to Chunin after kill eight enemies!",
+  "trait_darkie_rank_chunin": "Chunin",
+  "trait_darkie_rank_chunin_info": "A mid-rank shinobi.",
+  "trait_darkie_rank_chunin_info_2": "Proven capable in leadership and combat! Can evolve to Jonin after kill 20 enemies!",
+  "trait_darkie_rank_jonin": "Jonin",
+  "trait_darkie_rank_jonin_info": "An elite shinobi.",
+  "trait_darkie_rank_jonin_info_2": "Veteran of many battles and missions!"
 }

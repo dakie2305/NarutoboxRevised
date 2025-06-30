@@ -15,7 +15,10 @@ internal static class CustomTraits
     private static string Identifier = NarutoBoxMain.Identifier;
 
     private static string TraitGroupId = $"{Identifier}_narutobox_revised";
-    private static string TraitGroupId2 = $"{Identifier}_narutobox_revised_legend";
+    private static string TraitGroupIdLegend = $"{Identifier}_narutobox_revised_legend";
+    private static string TraitGroupIdShinobi = $"{Identifier}_narutobox_revised_shinobi";
+    private static string TraitGroupIdChakra = $"{Identifier}_narutobox_revised_chakra";
+
     private static string PathToTraitIcon = "ui/Icons/actor_traits/narutobox_revised_traits";
 
 
@@ -32,6 +35,7 @@ internal static class CustomTraits
     {
         loadCustomTraitGroup();
         loadCustomTrait();
+        loadCustomTraitShinobi();
     }
 
     private static void loadCustomTraitGroup()
@@ -47,12 +51,26 @@ internal static class CustomTraits
 
         ActorTraitGroupAsset group2 = new ActorTraitGroupAsset()
         {
-            id = TraitGroupId2,
-            name = $"trait_group_{TraitGroupId2}",
+            id = TraitGroupIdLegend,
+            name = $"trait_group_{TraitGroupIdLegend}",
             color = "#fc0303",
         };
-        // Add trait group to trait group library
         AssetManager.trait_groups.add(group2);
+
+        ActorTraitGroupAsset group3 = new ActorTraitGroupAsset()
+        {
+            id = TraitGroupIdShinobi,
+            name = $"trait_group_{TraitGroupIdShinobi}",
+            color = "#ffae00",
+        };
+        AssetManager.trait_groups.add(group3);
+        ActorTraitGroupAsset group4 = new ActorTraitGroupAsset()
+        {
+            id = TraitGroupIdChakra,
+            name = $"trait_group_{TraitGroupIdChakra}",
+            color = "#f00a5e",
+        };
+        AssetManager.trait_groups.add(group4);
     }
 
     private static void loadCustomTrait()
@@ -121,7 +139,7 @@ internal static class CustomTraits
         ActorTrait hashirama = new ActorTrait()
         {
             id = $"{Identifier}_hashirama",
-            group_id = TraitGroupId2,
+            group_id = TraitGroupIdLegend,
             path_icon = $"{PathToTraitIcon}/Hashirama",
             rate_birth = NoChance,
             rate_inherit = NoChance,
@@ -293,7 +311,7 @@ internal static class CustomTraits
         ActorTrait itachi = new ActorTrait()
         {
             id = $"{Identifier}_itachi",
-            group_id = TraitGroupId2,
+            group_id = TraitGroupIdLegend,
             path_icon = $"{PathToTraitIcon}/itachi",
             rate_birth = NoChance,
             rate_inherit = NoChance,
@@ -324,7 +342,7 @@ internal static class CustomTraits
         ActorTrait obito = new ActorTrait()
         {
             id = $"{Identifier}_obito",
-            group_id = TraitGroupId2,
+            group_id = TraitGroupIdLegend,
             path_icon = $"{PathToTraitIcon}/obito",
             rate_birth = NoChance,
             rate_inherit = NoChance,
@@ -358,7 +376,7 @@ internal static class CustomTraits
         ActorTrait madara = new ActorTrait()
         {
             id = $"{Identifier}_madara",
-            group_id = TraitGroupId2,
+            group_id = TraitGroupIdLegend,
             path_icon = $"{PathToTraitIcon}/madara",
             rate_birth = NoChance,
             rate_inherit = NoChance,
@@ -392,7 +410,7 @@ internal static class CustomTraits
         ActorTrait madaraFinal = new ActorTrait()
         {
             id = $"{Identifier}_final_form",
-            group_id = TraitGroupId2,
+            group_id = TraitGroupIdLegend,
             path_icon = $"{PathToTraitIcon}/rinengan",
             rate_birth = NoChance,
             rate_inherit = NoChance,
@@ -420,9 +438,124 @@ internal static class CustomTraits
         AssetManager.traits.add(madaraFinal);
         addToLocale(madaraFinal.id, "Madara Final Form", "God of War! Madara in his Rinnegan-powered final form!", "Fuse Madara with Hashirama's cell to unlock this!");
         #endregion
-
-
     }
+
+    private static void loadCustomTraitShinobi()
+    {
+        #region rank_academy_student
+        ActorTrait rank_academy_student = new ActorTrait()
+        {
+            id = $"{Identifier}_rank_academy_student",
+            group_id = TraitGroupIdShinobi,
+            path_icon = $"{PathToTraitIcon}/RankStudent",
+            rate_birth = Rare,
+            rate_inherit = NoChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        rank_academy_student.base_stats = new BaseStats();
+        rank_academy_student.base_stats.set(CustomBaseStatsConstant.Health, 10f);
+        rank_academy_student.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.05f);
+        rank_academy_student.base_stats.set(CustomBaseStatsConstant.Intelligence, 2f);
+
+        rank_academy_student.type = TraitType.Positive;
+        rank_academy_student.unlock(true);
+
+        rank_academy_student.action_special_effect = (WorldAction)Delegate.Combine(rank_academy_student.action_special_effect, new WorldAction(CustomTraitActions.rankEvolutionSpecialEffect));
+        AssetManager.traits.add(rank_academy_student);
+        addToLocale(rank_academy_student.id, "Academy Student", "A trainee at the ninja academy.", "Begin your ninja journey. Can evolve to Genin after kill two enemies!");
+        #endregion
+
+        #region rank_genin
+        ActorTrait rank_genin = new ActorTrait()
+        {
+            id = $"{Identifier}_rank_genin",
+            group_id = TraitGroupIdShinobi,
+            path_icon = $"{PathToTraitIcon}/RankGenin",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        rank_genin.base_stats = new BaseStats();
+        rank_genin.base_stats.set(CustomBaseStatsConstant.Damage, 10f);
+        rank_genin.base_stats.set(CustomBaseStatsConstant.Health, 70f);
+        rank_genin.base_stats.set(CustomBaseStatsConstant.Armor, 7f);
+        rank_genin.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.3f);
+        rank_genin.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.2f);
+        rank_genin.base_stats.set(CustomBaseStatsConstant.Intelligence, 5f);
+
+        rank_genin.type = TraitType.Positive;
+        rank_genin.unlock(true);
+
+        rank_genin.action_special_effect = (WorldAction)Delegate.Combine(rank_genin.action_special_effect, new WorldAction(CustomTraitActions.rank2EvolutionSpecialEffect));
+
+        AssetManager.traits.add(rank_genin);
+        addToLocale(rank_genin.id, "Genin", "A low-rank shinobi.", "Graduated from the academy! Can evolve to Chunin after kill eight enemies!");
+        #endregion
+
+        #region rank_chunin
+        ActorTrait rank_chunin = new ActorTrait()
+        {
+            id = $"{Identifier}_rank_chunin",
+            group_id = TraitGroupIdShinobi,
+            path_icon = $"{PathToTraitIcon}/RankChunin",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        rank_chunin.base_stats = new BaseStats();
+        rank_chunin.base_stats.set(CustomBaseStatsConstant.Damage, 30f);
+        rank_chunin.base_stats.set(CustomBaseStatsConstant.Health, 100f);
+        rank_chunin.base_stats.set(CustomBaseStatsConstant.Armor, 15f);
+        rank_chunin.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.5f);
+        rank_chunin.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.7f);
+        rank_chunin.base_stats.set(CustomBaseStatsConstant.Intelligence, 15f);
+
+        rank_chunin.type = TraitType.Positive;
+        rank_chunin.unlock(true);
+
+        rank_chunin.action_special_effect = (WorldAction)Delegate.Combine(rank_chunin.action_special_effect, new WorldAction(CustomTraitActions.rank3EvolutionSpecialEffect));
+
+        AssetManager.traits.add(rank_chunin);
+        addToLocale(rank_chunin.id, "Chunin", "A mid-rank shinobi.", "Proven capable in leadership and combat! Can evolve to Jonin after kill 20 enemies!");
+        #endregion
+
+        #region rank_jonin
+        ActorTrait rank_jonin = new ActorTrait()
+        {
+            id = $"{Identifier}_rank_jonin",
+            group_id = TraitGroupIdShinobi,
+            path_icon = $"{PathToTraitIcon}/RankJonin",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R2_Epic,
+            can_be_given = true,
+        };
+
+        rank_jonin.base_stats = new BaseStats();
+        rank_jonin.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 1.0f);
+        rank_jonin.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.0f);
+        rank_jonin.base_stats.set(CustomBaseStatsConstant.Armor, 20f);
+        rank_jonin.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 1.0f);
+        rank_jonin.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.0f);
+        rank_jonin.base_stats.set(CustomBaseStatsConstant.Intelligence, 25f);
+
+        rank_jonin.type = TraitType.Positive;
+        rank_jonin.unlock(true);
+
+        rank_jonin.action_attack_target = new AttackAction(CustomTraitActions.joninAttack);
+
+
+        AssetManager.traits.add(rank_jonin);
+        addToLocale(rank_jonin.id, "Jonin", "An elite shinobi.", "Veteran of many battles and missions.");
+        #endregion
+    }
+
 
     private static void addToLocale(string id, string name, string description, string description_2 = "")
     {

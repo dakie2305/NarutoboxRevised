@@ -47,6 +47,8 @@
   //CustomTraits(group.name)
   "trait_group_darkie_narutobox_revised": "Narutobox",
   "trait_group_darkie_narutobox_revised_legend": "Huyền Thoại Narutobox",
+  "trait_group_darkie_narutobox_revised_shinobi": "Narutobox Shinobi",
+  "trait_group_darkie_narutobox_revised_chakra": "Narutobox Chakra",
   //CustomTraits(id id_info id_info_2)
   "trait_darkie_senju": "Senju",
   "trait_darkie_senju_info": "Gia Tộc Senju! Các thành viên trong gia tộc có thể có cơ hội thức tỉnh Mộc Độn trong trận chiến ác liệt nhất!",
@@ -83,5 +85,18 @@
   "trait_darkie_madara_info_2": "Mở khóa bằng cách đánh bại Obito!",
   "trait_darkie_final_form": "Madara Tối Thượng",
   "trait_darkie_final_form_info": "Thần Chiến Tranh! Madara tối thượng với đôi mắt Rinnegan uy quyền!",
-  "trait_darkie_final_form_info_2": "Hợp nhất Madara với tế bào của Hashirama để mở khóa nó!"
+  "trait_darkie_final_form_info_2": "Hợp nhất Madara với tế bào của Hashirama để mở khóa nó!",
+
+  "trait_darkie_rank_academy_student": "Học Viên Học Viện",
+  "trait_darkie_rank_academy_student_info": "Một học viên đang được đào tạo tại học viện ninja.",
+  "trait_darkie_rank_academy_student_info_2": "Bắt đầu hành trình nhẫn giả. Có thể trở thành Genin sau khi hạ gục hai kẻ địch!",
+  "trait_darkie_rank_genin": "Genin",
+  "trait_darkie_rank_genin_info": "Một nhẫn giả cấp thấp.",
+  "trait_darkie_rank_genin_info_2": "Đã tốt nghiệp học viện! Có thể trở thành Chunin sau khi hạ gục tám kẻ địch!",
+  "trait_darkie_rank_chunin": "Chunin",
+  "trait_darkie_rank_chunin_info": "Một nhẫn giả cấp trung.",
+  "trait_darkie_rank_chunin_info_2": "Đã chứng tỏ khả năng lãnh đạo và chiến đấu! Có thể trở thành Jonin sau khi hạ gục 20 kẻ địch!",
+  "trait_darkie_rank_jonin": "Jonin",
+  "trait_darkie_rank_jonin_info": "Một nhẫn giả tinh nhuệ.",
+  "trait_darkie_rank_jonin_info_2": "Là cựu binh dày dặn kinh nghiệm qua nhiều trận chiến và nhiệm vụ!"
 }

@@ -51,6 +51,8 @@
   //CustomTraits(group.name)
   "trait_group_darkie_narutobox_revised": "Narutobox Traits",
   "trait_group_darkie_narutobox_revised_legend": "Narutobox Legend Traits",
+  "trait_group_darkie_narutobox_revised_shinobi": "Narutobox Shinobi Attributes",
+  "trait_group_darkie_narutobox_revised_chakra": "Narutobox Chakra Natures",
   //CustomTraits(id id_info id_info_2)
   "trait_darkie_senju": "Senju",
   "trait_darkie_senju_info": "Senju Clan! Clan members can have the chance to awake Woodstyle trait in the fiercest battle!",
@@ -87,6 +89,18 @@
   "trait_darkie_madara_info_2": "Unlock by defeating Obito!",
   "trait_darkie_final_form": "Madara Final Form",
   "trait_darkie_final_form_info": "God of War! Madara in his Rinnegan-powered final form!",
-  "trait_darkie_final_form_info_2": "Fuse Madara with Hashirama's cell to unlock this!"
+  "trait_darkie_final_form_info_2": "Fuse Madara with Hashirama's cell to unlock this!",
+  "trait_darkie_rank_academy_student": "Academy Student",
+  "trait_darkie_rank_academy_student_info": "A trainee at the ninja academy.",
+  "trait_darkie_rank_academy_student_info_2": "Begin your ninja journey. Can evolve to Genin after kill two enemies!",
+  "trait_darkie_rank_genin": "Genin",
+  "trait_darkie_rank_genin_info": "A low-rank shinobi.",
+  "trait_darkie_rank_genin_info_2": "Graduated from the academy! Can evolve to Chunin after kill eight enemies!",
+  "trait_darkie_rank_chunin": "Chunin",
+  "trait_darkie_rank_chunin_info": "A mid-rank shinobi.",
+  "trait_darkie_rank_chunin_info_2": "Proven capable in leadership and combat! Can evolve to Jonin after kill 20 enemies!",
+  "trait_darkie_rank_jonin": "Jonin",
+  "trait_darkie_rank_jonin_info": "An elite shinobi.",
+  "trait_darkie_rank_jonin_info_2": "Veteran of many battles and missions!"
 
 }

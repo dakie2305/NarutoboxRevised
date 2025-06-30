@@ -364,6 +364,59 @@ internal static class CustomTraitActions
         return true;
     }
 
+    internal static bool rankEvolutionSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        Actor actor = pTarget.a;
+        //Kill two enemies
+        if (actor.data.kills >= 2 && !actor.hasTrait($"{NarutoBoxMain.Identifier}_rank_genin"))
+        {
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_academy_student");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_chunin"); // Safety: if somehow higher already
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_jonin");
+
+
+            actor.addTrait($"{NarutoBoxMain.Identifier}_rank_genin");
+            actor.data.health += 100;
+        }
+        return true;
+    }
+
+    internal static bool rank2EvolutionSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        Actor actor = pTarget.a;
+        //Kill more than 8 enemies
+        if (actor.data.kills >= 8 && !actor.hasTrait($"{NarutoBoxMain.Identifier}_rank_chunin"))
+        {
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_genin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_genin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_jonin");
+
+            actor.addTrait($"{NarutoBoxMain.Identifier}_rank_chunin");
+            actor.data.health += 100;
+        }
+        return true;
+    }
+
+    internal static bool rank3EvolutionSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        Actor actor = pTarget.a;
+        //Kill more than 20 enemies
+        // Promote to Jonin
+        if (actor.data.kills >= 20 && !actor.hasTrait($"{NarutoBoxMain.Identifier}_rank_jonin"))
+        {
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_academy_student");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_genin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_chunin");
+
+            actor.addTrait($"{NarutoBoxMain.Identifier}_rank_jonin");
+            actor.data.health += 100;
+        }
+        return true;
+    }
+
 
     #endregion
 
@@ -525,6 +578,27 @@ internal static class CustomTraitActions
         return true;
     }
 
+    internal static bool joninAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        //Random attack
+        if (Randy.randomChance(0.05f))
+        {
+            teleportToSpecificLocation(pSelf, pTarget, pTarget.current_tile);
+        }
+        else if (Randy.randomChance(0.05f))
+        {
+            EffectsLibrary.spawn("fx_nuke_flash", pTarget.current_tile);    //flash
+            EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 1f);
+        }
+        else if (Randy.randomChance(0.05f))
+        {
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire");
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "fire");
+            MapBox.instance.drop_manager.spawn(pTarget.current_tile, "acid");
+        }
+        return true;
+    }
 
     #endregion
 
@@ -563,11 +637,6 @@ internal static class CustomTraitActions
         pTarget.a.spawnOn(pTile, 0f);
         return true;
     }
-
-
-
-
-
 
     #endregion
 }
