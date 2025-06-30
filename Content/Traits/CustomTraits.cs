@@ -548,12 +548,91 @@ internal static class CustomTraits
         rank_jonin.type = TraitType.Positive;
         rank_jonin.unlock(true);
 
-        rank_jonin.action_attack_target = new AttackAction(CustomTraitActions.joninAttack);
+        rank_jonin.action_special_effect = (WorldAction)Delegate.Combine(rank_chunin.action_special_effect, new WorldAction(CustomTraitActions.joninEvolutionSpecialEffect));
+        rank_jonin.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
 
 
         AssetManager.traits.add(rank_jonin);
-        addToLocale(rank_jonin.id, "Jonin", "An elite shinobi.", "Veteran of many battles and missions.");
+        addToLocale(rank_jonin.id, "Jonin", "An elite shinobi. Veteran of many battles and missions!", "Can use a bit of teleport and burn enemies! Only become Anbu if kill over 50 enemies and over level 5!");
         #endregion
+
+        #region anbu_member
+        ActorTrait anbu_member = new ActorTrait()
+        {
+            id = $"{Identifier}_anbu",
+            group_id = TraitGroupIdShinobi,
+            path_icon = $"{PathToTraitIcon}/AnbuNinja",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        anbu_member.base_stats = new BaseStats();
+        anbu_member.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 1.0f);
+        anbu_member.base_stats.set(CustomBaseStatsConstant.CriticalChance, 0.6f);
+        anbu_member.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.6f);
+        anbu_member.base_stats.set(CustomBaseStatsConstant.Armor, 15f);
+        anbu_member.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 1.7f);
+        anbu_member.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.7f);
+        anbu_member.base_stats.set(CustomBaseStatsConstant.Intelligence, 22f);
+
+        anbu_member.type = TraitType.Positive;
+        anbu_member.unlock(true);
+
+        anbu_member.addOpposites(new List<string> {
+            $"{Identifier}_rank_academy_student",
+            $"{Identifier}_rank_genin",
+            $"{Identifier}_rank_chunin",
+            $"{Identifier}_rank_jonin"
+        });
+
+        anbu_member.action_special_effect = (WorldAction)Delegate.Combine(anbu_member.action_special_effect, new WorldAction(CustomTraitActions.anbuSpecialEffect));
+        anbu_member.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
+
+        AssetManager.traits.add(anbu_member);
+        addToLocale(anbu_member.id, "Anbu", "Member of the Anbu Black Ops.", "Elite shinobi operating in secret. Can use special attack!");
+        #endregion
+
+        #region anbu_captain
+        ActorTrait anbu_captain = new ActorTrait()
+        {
+            id = $"{Identifier}_anbu_captain",
+            group_id = TraitGroupIdShinobi,
+            path_icon = $"{PathToTraitIcon}/AnbuCaptain",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R2_Epic,
+            can_be_given = true,
+        };
+
+        anbu_captain.base_stats = new BaseStats();
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 1.2f);
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.CriticalChance, 0.8f);
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 2.0f);
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.Armor, 20f);
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 1.85f);
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.85f);
+        anbu_captain.base_stats.set(CustomBaseStatsConstant.Intelligence, 55f);
+
+        anbu_captain.type = TraitType.Positive;
+        anbu_captain.unlock(true);
+
+        anbu_captain.addOpposites(new List<string> {
+            $"{Identifier}_rank_academy_student",
+            $"{Identifier}_rank_genin",
+            $"{Identifier}_rank_chunin",
+            $"{Identifier}_rank_jonin",
+            $"{Identifier}_anbu",
+        });
+
+        anbu_captain.action_special_effect = (WorldAction)Delegate.Combine(anbu_captain.action_special_effect, new WorldAction(CustomTraitActions.anbuCaptainSpecialEffect));
+        anbu_captain.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
+
+        AssetManager.traits.add(anbu_captain);
+        addToLocale(anbu_captain.id, "Anbu Captain", "Captain of the Anbu Black Ops.", "Commanding leader of elite covert missions. Can use special attack!");
+        #endregion
+
     }
 
 

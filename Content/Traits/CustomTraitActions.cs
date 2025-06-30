@@ -417,7 +417,73 @@ internal static class CustomTraitActions
         return true;
     }
 
+    internal static bool joninEvolutionSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        Actor actor = pTarget.a;
+        //Kill more than 50 enemies and level 5 above
+        if (actor.data.kills >= 50 && actor.data.level >=5 && !actor.hasTrait($"{NarutoBoxMain.Identifier}_anbu"))
+        {
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_academy_student");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_genin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_chunin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_jonin");
 
+            actor.addTrait($"{NarutoBoxMain.Identifier}_anbu");
+            actor.data.health += 300;
+        }
+        return true;
+    }
+
+    internal static bool anbuSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        //Always warrior
+        if (pTarget.a.getProfession() != UnitProfession.Warrior)
+            pTarget.a.setProfession(UnitProfession.Warrior);
+
+        if (pTarget.a.getHealth() < pTarget.a.getMaxHealth() / 8)
+        {
+            //Teleport away
+            ActionLibrary.teleportRandom(pTarget, pTarget, pTile);
+        }
+
+        Actor actor = pTarget.a;
+        //Kill more than 80 enemies and level 5 above
+        if (actor.data.kills >= 80 && actor.data.level >= 5 && !actor.hasTrait($"{NarutoBoxMain.Identifier}_anbu_captain"))
+        {
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_academy_student");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_genin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_chunin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_rank_jonin");
+            actor.removeTrait($"{NarutoBoxMain.Identifier}_anbu");
+
+            actor.addTrait($"{NarutoBoxMain.Identifier}_anbu_captain");
+            actor.data.health += 700;
+        }
+        return true;
+    }
+
+
+    internal static bool anbuCaptainSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        //Always warrior
+        if (pTarget.a.getProfession() != UnitProfession.Warrior)
+            pTarget.a.setProfession(UnitProfession.Warrior);
+
+        //Should be army captain
+        if (pTarget.a.hasArmy() && !pTarget.a.is_army_captain)
+            pTarget.a.army.setCaptain(pTarget.a);
+
+        if (pTarget.a.getHealth() < pTarget.a.getMaxHealth() / 2)
+        {
+            //Teleport away
+            ActionLibrary.teleportRandom(pTarget, pTarget, pTile);
+        }
+
+        return true;
+    }
     #endregion
 
     #region Attack Effect
@@ -578,18 +644,13 @@ internal static class CustomTraitActions
         return true;
     }
 
-    internal static bool joninAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    internal static bool eliteNinjaAttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
     {
         if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
         //Random attack
         if (Randy.randomChance(0.05f))
         {
             teleportToSpecificLocation(pSelf, pTarget, pTarget.current_tile);
-        }
-        else if (Randy.randomChance(0.05f))
-        {
-            EffectsLibrary.spawn("fx_nuke_flash", pTarget.current_tile);    //flash
-            EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 1f);
         }
         else if (Randy.randomChance(0.05f))
         {
@@ -637,6 +698,7 @@ internal static class CustomTraitActions
         pTarget.a.spawnOn(pTile, 0f);
         return true;
     }
+
 
     #endregion
 }
