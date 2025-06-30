@@ -103,11 +103,11 @@
   "trait_darkie_rank_jonin": "Jonin",
   "trait_darkie_rank_jonin_info": "An elite shinobi. Veteran of many battles and missions!",
   "trait_darkie_rank_jonin_info_2": "Can use a bit of teleport and burn enemies! Only become Anbu if kill over 50 enemies and over level 5!",
-  "trait_darkie_rank_anbu": "Anbu",
-  "trait_darkie_rank_anbu_info": "Member of the Anbu Black Ops!",
-  "trait_darkie_rank_anbu_info_2": "Elite shinobi operating in secret. Can use special attack!! Only become Anbu Captain if kill over 80 enemies and over level 5!",
-  "trait_darkie_rank_anbu_captain": "Anbu Captain",
-  "trait_darkie_rank_anbu_captain_info": "Captain of the Anbu Black Ops!",
-  "trait_darkie_rank_anbu_captain_info_2": "Commanding leader of elite covert missions. Can use special attack!"
+  "trait_darkie_anbu": "Anbu",
+  "trait_darkie_anbu_info": "Member of the Anbu Black Ops!",
+  "trait_darkie_anbu_info_2": "Elite shinobi operating in secret. Can use special attack!! Only become Anbu Captain if kill over 80 enemies and over level 5!",
+  "trait_darkie_anbu_captain": "Anbu Captain",
+  "trait_darkie_anbu_captain_info": "Captain of the Anbu Black Ops!",
+  "trait_darkie_anbu_captain_info_2": "Commanding leader of elite covert missions. Can use special attack!"
 
 }
