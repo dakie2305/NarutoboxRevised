@@ -12,10 +12,11 @@ namespace NarutoboxRevised.Content.Traits;
 
 internal static class CustomTraits
 {
-    private static string TraitGroupId = "darkie_narutobox_revised";
-    private static string TraitGroupId2 = "darkie_narutobox_revised_legend";
-    private static string PathToTraitIcon = "ui/Icons/actor_traits/narutobox_revised_traits";
     private static string Identifier = NarutoBoxMain.Identifier;
+
+    private static string TraitGroupId = $"{Identifier}_narutobox_revised";
+    private static string TraitGroupId2 = $"{Identifier}_narutobox_revised_legend";
+    private static string PathToTraitIcon = "ui/Icons/actor_traits/narutobox_revised_traits";
 
 
     private static int NoChance = 0;
