@@ -47,8 +47,10 @@
   //CustomTraits(group.name)
   "trait_group_darkie_narutobox_revised": "Narutobox",
   "trait_group_darkie_narutobox_revised_legend": "Huyền Thoại Narutobox",
-  "trait_group_darkie_narutobox_revised_shinobi": "Narutobox Shinobi",
-  "trait_group_darkie_narutobox_revised_chakra": "Narutobox Chakra",
+  "trait_group_darkie_narutobox_revised_shinobi": "Nhẫn Giả Narutobox",
+  "trait_group_darkie_narutobox_revised_chakra": "Hệ Chakra Narutobox",
+  "trait_group_darkie_narutobox_revised_clan": "Gia Tộc Narutobox",
+
   //CustomTraits(id id_info id_info_2)
   "trait_darkie_senju": "Senju",
   "trait_darkie_senju_info": "Gia Tộc Senju! Các thành viên trong gia tộc có thể có cơ hội thức tỉnh Mộc Độn trong trận chiến ác liệt nhất!",

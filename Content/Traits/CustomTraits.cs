@@ -18,6 +18,7 @@ internal static class CustomTraits
     private static string TraitGroupIdLegend = $"{Identifier}_narutobox_revised_legend";
     private static string TraitGroupIdShinobi = $"{Identifier}_narutobox_revised_shinobi";
     private static string TraitGroupIdChakra = $"{Identifier}_narutobox_revised_chakra";
+    private static string TraitGroupIdClan = $"{Identifier}_narutobox_revised_clan";
 
     private static string PathToTraitIcon = "ui/Icons/actor_traits/narutobox_revised_traits";
 
@@ -36,7 +37,10 @@ internal static class CustomTraits
         loadCustomTraitGroup();
         loadCustomTrait();
         loadCustomTraitShinobi();
+        loadCustomTraitClans();
+        loadCustomLegendTraits();
     }
+
 
     private static void loadCustomTraitGroup()
     {
@@ -71,41 +75,18 @@ internal static class CustomTraits
             color = "#f00a5e",
         };
         AssetManager.trait_groups.add(group4);
+
+        ActorTraitGroupAsset group5 = new ActorTraitGroupAsset()
+        {
+            id = TraitGroupIdClan,
+            name = $"trait_group_{TraitGroupIdClan}",
+            color = "#f00a5e",
+        };
+        AssetManager.trait_groups.add(group5);
     }
 
     private static void loadCustomTrait()
     {
-        //senju clan
-        #region senju
-        ActorTrait senju = new ActorTrait()
-        {
-            id = $"{Identifier}_senju",
-            group_id = TraitGroupId,
-            path_icon = $"{PathToTraitIcon}/senju",
-            rate_birth = NoChance,
-            rate_inherit = AlwaysChance,
-            rarity = Rarity.R0_Normal,
-        };
-
-        senju.base_stats = new BaseStats();
-        senju.base_stats.set(CustomBaseStatsConstant.Damage, 85f);
-        senju.base_stats.set(CustomBaseStatsConstant.Armor, 10f);
-        senju.base_stats.set(CustomBaseStatsConstant.Health, 200f);
-        senju.base_stats.set(CustomBaseStatsConstant.Intelligence, 50f);
-        senju.base_stats.set(CustomBaseStatsConstant.Speed, 15f);
-        senju.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
-        senju.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
-
-        senju.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
-
-        senju.type = TraitType.Positive;
-        senju.unlock(true);
-        senju.action_special_effect = (WorldAction)Delegate.Combine(senju.action_special_effect, new WorldAction(CustomTraitActions.senjuClanAwakeningSpecialEffect));
-        AssetManager.traits.add(senju);
-        addToLocale(senju.id, "Senju", "Senju Clan! Clan members can have the chance to awake Woodstyle trait in the fiercest battle!");
-        #endregion
-
-
         #region woodstyle
         ActorTrait woodstyle = new ActorTrait()
         {
@@ -135,38 +116,6 @@ internal static class CustomTraits
         addToLocale(woodstyle.id, "Woodstyle", "Woodstyle No Jutsu! The true leaders of Senju clan, with special abilities of wood and the ultimate bloodline of Senju!");
         #endregion
 
-        #region hashirama
-        ActorTrait hashirama = new ActorTrait()
-        {
-            id = $"{Identifier}_hashirama",
-            group_id = TraitGroupIdLegend,
-            path_icon = $"{PathToTraitIcon}/Hashirama",
-            rate_birth = NoChance,
-            rate_inherit = NoChance,
-            rarity = Rarity.R3_Legendary,
-            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
-        };
-
-        hashirama.base_stats = new BaseStats();
-        hashirama.base_stats.set(CustomBaseStatsConstant.Damage, 800f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.Armor, 50f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.3f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.0f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.Health, 2000f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.9f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
-        hashirama.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
-
-        hashirama.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
-
-        hashirama.type = TraitType.Positive;
-        hashirama.unlock(true);
-        hashirama.action_special_effect = (WorldAction)Delegate.Combine(hashirama.action_special_effect, new WorldAction(CustomTraitActions.hashiramaSpecialEffect));
-        hashirama.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
-        AssetManager.traits.add(hashirama);
-        addToLocale(hashirama.id, "Hashirama", "Senju Hashirama! The Ninja God has appeared!", "Rename someone with Woodstyle trait to Senju Hashirama to get this!");
-        #endregion
-
         #region cell
         ActorTrait cell = new ActorTrait()
         {
@@ -185,36 +134,6 @@ internal static class CustomTraits
         cell.action_special_effect = (WorldAction)Delegate.Combine(cell.action_special_effect, new WorldAction(CustomTraitActions.cellSpecialEffect));
         AssetManager.traits.add(cell);
         addToLocale(cell.id, "Hashirama's Cell", "The blood cell of The Ninja God! Give this trait to Madara to unlock ultimate form!");
-        #endregion
-
-
-        #region Uchiha
-        ActorTrait uchiha = new ActorTrait()
-        {
-            id = $"{Identifier}_uchiha",
-            group_id = TraitGroupId,
-            path_icon = $"{PathToTraitIcon}/uchiha",
-            rate_birth = NoChance,
-            rate_inherit = AlwaysChance,
-            rarity = Rarity.R0_Normal,
-        };
-        uchiha.base_stats = new BaseStats();
-        uchiha.base_stats.set(CustomBaseStatsConstant.Damage, 85f);
-        uchiha.base_stats.set(CustomBaseStatsConstant.Armor, 10f);
-        uchiha.base_stats.set(CustomBaseStatsConstant.Health, 200f);
-        uchiha.base_stats.set(CustomBaseStatsConstant.Intelligence, 50f);
-        uchiha.base_stats.set(CustomBaseStatsConstant.Speed, 15f);
-        uchiha.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
-        uchiha.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
-        uchiha.type = TraitType.Positive;
-        uchiha.unlock(true);
-
-        uchiha.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_hashirama", $"{Identifier}_woodstyle" });
-
-        uchiha.action_special_effect = (WorldAction)Delegate.Combine(uchiha.action_special_effect, new WorldAction(CustomTraitActions.uchihaClanAwakeningSpecialEffect));
-
-        AssetManager.traits.add(uchiha);
-        addToLocale(uchiha.id, "Uchiha", "Uchiha Clan! Clan members can have the chance to awake Sharingan trait in the fiercest battle!");
         #endregion
 
         #region sharingan_1
@@ -306,6 +225,42 @@ internal static class CustomTraits
         AssetManager.traits.add(sharingan_3);
         addToLocale(sharingan_3.id, "Sharingan 3", "The last and strongest stage of Sharingan! This is the foundation to become a legend!", "Rename unit to Uchiha Obito or Uchiha Itachi, or add Cell trait to evolve further!");
         #endregion
+
+    }
+    private static void loadCustomLegendTraits()
+    {
+        #region hashirama
+        ActorTrait hashirama = new ActorTrait()
+        {
+            id = $"{Identifier}_hashirama",
+            group_id = TraitGroupIdLegend,
+            path_icon = $"{PathToTraitIcon}/Hashirama",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R3_Legendary,
+            can_be_given = NarutoBoxConfig.UnlockLegendTraits,
+        };
+
+        hashirama.base_stats = new BaseStats();
+        hashirama.base_stats.set(CustomBaseStatsConstant.Damage, 800f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Armor, 50f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.3f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 1.0f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Health, 2000f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.9f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
+        hashirama.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
+
+        hashirama.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+
+        hashirama.type = TraitType.Positive;
+        hashirama.unlock(true);
+        hashirama.action_special_effect = (WorldAction)Delegate.Combine(hashirama.action_special_effect, new WorldAction(CustomTraitActions.hashiramaSpecialEffect));
+        hashirama.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
+        AssetManager.traits.add(hashirama);
+        addToLocale(hashirama.id, "Hashirama", "Senju Hashirama! The Ninja God has appeared!", "Rename someone with Woodstyle trait to Senju Hashirama to get this!");
+        #endregion
+
 
         #region itachi
         ActorTrait itachi = new ActorTrait()
@@ -440,6 +395,7 @@ internal static class CustomTraits
         #endregion
     }
 
+
     private static void loadCustomTraitShinobi()
     {
         #region rank_academy_student
@@ -548,7 +504,7 @@ internal static class CustomTraits
         rank_jonin.type = TraitType.Positive;
         rank_jonin.unlock(true);
 
-        rank_jonin.action_special_effect = (WorldAction)Delegate.Combine(rank_chunin.action_special_effect, new WorldAction(CustomTraitActions.joninEvolutionSpecialEffect));
+        rank_jonin.action_special_effect = (WorldAction)Delegate.Combine(rank_jonin.action_special_effect, new WorldAction(CustomTraitActions.joninEvolutionSpecialEffect));
         rank_jonin.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
 
 
@@ -631,6 +587,138 @@ internal static class CustomTraits
 
         AssetManager.traits.add(anbu_captain);
         addToLocale(anbu_captain.id, "Anbu Captain", "Captain of the Anbu Black Ops.", "Commanding leader of elite covert missions. Can use special attack!");
+        #endregion
+        
+
+    }
+
+    private static void loadCustomTraitClans()
+    {
+        //senju clan
+        #region senju
+        ActorTrait senju = new ActorTrait()
+        {
+            id = $"{Identifier}_senju",
+            group_id = TraitGroupIdClan,
+            path_icon = $"{PathToTraitIcon}/senju",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        senju.base_stats = new BaseStats();
+        senju.base_stats.set(CustomBaseStatsConstant.Damage, 85f);
+        senju.base_stats.set(CustomBaseStatsConstant.Armor, 10f);
+        senju.base_stats.set(CustomBaseStatsConstant.Health, 200f);
+        senju.base_stats.set(CustomBaseStatsConstant.Intelligence, 50f);
+        senju.base_stats.set(CustomBaseStatsConstant.Speed, 15f);
+        senju.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+        senju.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
+
+        senju.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+
+        senju.type = TraitType.Positive;
+        senju.unlock(true);
+        senju.action_special_effect = (WorldAction)Delegate.Combine(senju.action_special_effect, new WorldAction(CustomTraitActions.senjuClanAwakeningSpecialEffect));
+        AssetManager.traits.add(senju);
+        addToLocale(senju.id, "Senju", "Senju Clan! Clan members can have the chance to awake Woodstyle trait in the fiercest battle!");
+        #endregion
+
+
+        #region Uchiha
+        ActorTrait uchiha = new ActorTrait()
+        {
+            id = $"{Identifier}_uchiha",
+            group_id = TraitGroupIdClan,
+            path_icon = $"{PathToTraitIcon}/uchiha",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+        uchiha.base_stats = new BaseStats();
+        uchiha.base_stats.set(CustomBaseStatsConstant.Damage, 85f);
+        uchiha.base_stats.set(CustomBaseStatsConstant.Armor, 10f);
+        uchiha.base_stats.set(CustomBaseStatsConstant.Health, 200f);
+        uchiha.base_stats.set(CustomBaseStatsConstant.Intelligence, 50f);
+        uchiha.base_stats.set(CustomBaseStatsConstant.Speed, 15f);
+        uchiha.base_stats.set(CustomBaseStatsConstant.MultiplierStamina, 0.1f);
+        uchiha.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.1f);
+        uchiha.type = TraitType.Positive;
+        uchiha.unlock(true);
+
+        uchiha.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_hashirama", $"{Identifier}_woodstyle" });
+
+        uchiha.action_special_effect = (WorldAction)Delegate.Combine(uchiha.action_special_effect, new WorldAction(CustomTraitActions.uchihaClanAwakeningSpecialEffect));
+
+        AssetManager.traits.add(uchiha);
+        addToLocale(uchiha.id, "Uchiha", "Uchiha Clan! Clan members can have the chance to awake Sharingan trait in the fiercest battle!");
+        #endregion
+
+        #region hyuga
+        ActorTrait hyuga = new ActorTrait()
+        {
+            id = $"{Identifier}_hyuga",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/Hyuga",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        hyuga.base_stats = new BaseStats();
+        hyuga.base_stats.set(CustomBaseStatsConstant.Damage, 75f);
+        hyuga.base_stats.set(CustomBaseStatsConstant.Health, 200f);
+        hyuga.base_stats.set(CustomBaseStatsConstant.Speed, 50f);
+        hyuga.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 5f);
+        hyuga.base_stats.set(CustomBaseStatsConstant.Intelligence, 10f);
+
+        hyuga.type = TraitType.Positive;
+        hyuga.unlock(true);
+
+        hyuga.addOpposites(new List<string> {
+            $"{Identifier}_senju",
+            $"{Identifier}_uchiha",
+            $"{Identifier}_uzumaki"
+        });
+
+        hyuga.action_special_effect = (WorldAction)Delegate.Combine(hyuga.action_special_effect, new WorldAction(CustomTraitActions.hyugaAwakenSpecialEffect));
+
+        AssetManager.traits.add(hyuga);
+        addToLocale(hyuga.id, "Hyuga", "Hyuga Clan. Users of the Byakugan. Renowned for their Gentle Fist technique", "Clan members can have the chance to awake power trait in the normal battle");
+        #endregion
+
+        #region uzumaki
+        ActorTrait uzumaki = new ActorTrait()
+        {
+            id = $"{Identifier}_uzumaki",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/Uzumaki",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        uzumaki.base_stats = new BaseStats();
+        uzumaki.base_stats.set(CustomBaseStatsConstant.Damage, 75f);
+        uzumaki.base_stats.set(CustomBaseStatsConstant.Health, 200f);
+        uzumaki.base_stats.set(CustomBaseStatsConstant.Speed, 10f);
+        uzumaki.base_stats.set(CustomBaseStatsConstant.AttackSpeed, 5f);
+        uzumaki.base_stats.set(CustomBaseStatsConstant.Intelligence, 10f);
+        uzumaki.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 2.0f);
+
+        uzumaki.type = TraitType.Positive;
+        uzumaki.unlock(true);
+
+        uzumaki.addOpposites(new List<string> {
+            $"{Identifier}_senju",
+            $"{Identifier}_hyuga",
+            $"{Identifier}_uchiha"
+        });
+
+        AssetManager.traits.add(uzumaki);
+        addToLocale(uzumaki.id, "Uzumaki", "Uzumaki Clan", "Possess immense chakra and sealing prowess.");
         #endregion
 
     }

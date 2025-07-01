@@ -53,6 +53,7 @@
   "trait_group_darkie_narutobox_revised_legend": "Narutobox Legend Traits",
   "trait_group_darkie_narutobox_revised_shinobi": "Narutobox Shinobi Attributes",
   "trait_group_darkie_narutobox_revised_chakra": "Narutobox Chakra Natures",
+  "trait_group_darkie_narutobox_revised_clan": "Narutobox Clans",
   //CustomTraits(id id_info id_info_2)
   "trait_darkie_senju": "Senju",
   "trait_darkie_senju_info": "Senju Clan! Clan members can have the chance to awake Woodstyle trait in the fiercest battle!",
@@ -107,7 +108,13 @@
   "trait_darkie_anbu_info_2": "Elite shinobi operating in secret. Can use special attack!! Only become Anbu Captain if kill over 80 enemies and over level 5!",
   "trait_darkie_anbu_captain": "Anbu Captain",
   "trait_darkie_anbu_captain_info": "Captain of the Anbu Black Ops!",
-  "trait_darkie_anbu_captain_info_2": "Commanding leader of elite covert missions. Can use special attack!"
+  "trait_darkie_anbu_captain_info_2": "Commanding leader of elite covert missions. Can use special attack!",
+  "trait_darkie_hyuga": "Hyuga",
+  "trait_darkie_hyuga_info": "Hyuga Clan! Users of the Byakugan!",
+  "trait_darkie_hyuga_info_2": "Clan members can have the chance to awake power trait in the fiercest battle!",
+  "trait_darkie_uzumaki": "Uzumaki",
+  "trait_darkie_uzumaki_info": "Uzumaki Clan! Possess immense chakra and sealing prowess",
+  "trait_darkie_uzumaki_info_2": "W.I.P."
 
 
 }

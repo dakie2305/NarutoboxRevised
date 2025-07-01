@@ -484,6 +484,37 @@ internal static class CustomTraitActions
 
         return true;
     }
+
+    internal static bool hyugaAwakenSpecialEffect(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_byakugan"))
+            return false;
+        //Awaken age range
+        if (pTarget.a.data.getAge() > 12)
+        {
+            if (pTarget.a.data.kills > 3)
+            {
+                pTarget.a.addTrait($"{NarutoBoxMain.Identifier}_byakugan");
+                pTarget.a.data.health += 500;
+                return true;
+            }
+            else if (Randy.randomChance(0.05f) || pTarget.a.data.health < pTarget.a.getMaxHealth() / 5)
+            {
+                pTarget.a.addTrait($"{NarutoBoxMain.Identifier}_byakugan");
+                pTarget.a.data.health += 500;
+                return true;
+            }
+        }
+
+        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("hyuga", StringComparison.OrdinalIgnoreCase))
+        {
+            //Add clan name: Hyuga
+            renameToClanName("Hyuga", pTarget);
+        }
+
+        return false;
+    }
     #endregion
 
     #region Attack Effect
