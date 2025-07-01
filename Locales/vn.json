@@ -118,5 +118,25 @@
   "trait_darkie_byakugan_info_2": "Có thể tiến hóa thành Byakugan Thuần Khiết trong trận chiến ác liệt nhất!",
   "trait_darkie_pure_byakugan": "Byakugan Thuần Khiết",
   "trait_darkie_pure_byakugan_info": "Thiên tài của Hyuga! Một dạng Byakugan hoàn hảo – mang lại sự tinh tường và nhanh nhẹn vô song!",
-  "trait_darkie_pure_byakugan_info_2": "Có thể ném tro vào kẻ địch!"
+  "trait_darkie_pure_byakugan_info_2": "Có thể ném tro vào kẻ địch!",
+
+  "trait_darkie_chakra_fire": "Fire Style",
+  "trait_darkie_chakra_fire_info": "Fire Chakra Nature! Unleash blazing attacks and destructive power!",
+  "trait_darkie_chakra_fire_info_2": "Aggressive style, increases attack and speed.",
+
+  "trait_darkie_chakra_water": "Water Style",
+  "trait_darkie_chakra_water_info": "Water Chakra Nature! Adaptive and resilient like flowing rivers.",
+  "trait_darkie_chakra_water_info_2": "Boosts health and movement speed.",
+
+  "trait_darkie_chakra_lightning": "Lightning Style",
+  "trait_darkie_chakra_lightning_info": "Lightning Chakra Nature! Fast and precise strikes that stun enemies.",
+  "trait_darkie_chakra_lightning_info_2": "Enhances critical strikes and speed!",
+
+  "trait_darkie_chakra_wind": "Wind Style",
+  "trait_darkie_chakra_wind_info": "Wind Chakra Nature! Razor-sharp control with swift execution.",
+  "trait_darkie_chakra_wind_info_2": "Boosts crit chance and overall agility.",
+
+  "trait_darkie_chakra_earth": "Earth Style",
+  "trait_darkie_chakra_earth_info": "Earth Chakra Nature! Solid and durable like stone itself.",
+  "trait_darkie_chakra_earth_info_2": "Enhances armor and overall durability."
 }

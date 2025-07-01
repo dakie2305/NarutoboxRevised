@@ -39,6 +39,7 @@ internal static class CustomTraits
         loadCustomTraitShinobi();
         loadCustomTraitClans();
         loadCustomLegendTraits();
+        loadCustomTraitChakra();
     }
 
 
@@ -790,6 +791,133 @@ internal static class CustomTraits
 
         AssetManager.traits.add(uzumaki);
         addToLocale(uzumaki.id, "Uzumaki", "Uzumaki Clan", "Possess immense chakra and sealing prowess.");
+        #endregion
+
+    }
+
+
+    /// <summary>
+    /// W.I.P.
+    /// Not yet finished
+    /// </summary>
+    private static void loadCustomTraitChakra()
+    {
+        #region chakra_fire
+        ActorTrait chakra_fire = new ActorTrait()
+        {
+            id = $"{Identifier}_chakra_fire",
+            group_id = TraitGroupIdChakra,
+            path_icon = $"{PathToTraitIcon}/ChakraNatureFire",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+            can_be_given = true,
+        };
+
+        chakra_fire.base_stats = new BaseStats();
+        chakra_fire.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.2f);
+        chakra_fire.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.1f);
+        chakra_fire.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.1f);
+
+        chakra_fire.type = TraitType.Positive;
+        chakra_fire.unlock(true);
+
+        AssetManager.traits.add(chakra_fire);
+        addToLocale(chakra_fire.id, "Fire Style", "Fire Chakra Nature", "Mastery of Fire — aggressive and overwhelming style.");
+        #endregion
+
+        #region chakra_water
+        ActorTrait chakra_water = new ActorTrait()
+        {
+            id = $"{Identifier}_chakra_water",
+            group_id = TraitGroupIdChakra,
+            path_icon = $"{PathToTraitIcon}/ChakraNatureWater",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        chakra_water.base_stats = new BaseStats();
+        chakra_water.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.1f);
+        chakra_water.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.15f);
+        chakra_water.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.12f);
+
+        chakra_water.type = TraitType.Positive;
+        chakra_water.unlock(true);
+
+        AssetManager.traits.add(chakra_water);
+        addToLocale(chakra_water.id, "Water Style", "Water Chakra Nature", "Fluid, reactive, and versatile combat style.");
+        #endregion
+
+        #region chakra_lightning
+        ActorTrait chakra_lightning = new ActorTrait()
+        {
+            id = $"{Identifier}_chakra_lightning",
+            group_id = TraitGroupIdChakra,
+            path_icon = $"{PathToTraitIcon}/ChakraNatureLightening",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        chakra_lightning.base_stats = new BaseStats();
+        chakra_lightning.base_stats.set(CustomBaseStatsConstant.CriticalChance, 0.2f);
+        chakra_lightning.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.2f);
+        chakra_lightning.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.15f);
+        chakra_lightning.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.15f);
+
+        chakra_lightning.type = TraitType.Positive;
+        chakra_lightning.unlock(true);
+
+        AssetManager.traits.add(chakra_lightning);
+        addToLocale(chakra_lightning.id, "Lightning Style", "Lightning Chakra Nature", "High speed, precision strikes — shocking and deadly.");
+        #endregion
+
+        #region chakra_wind
+        ActorTrait chakra_wind = new ActorTrait()
+        {
+            id = $"{Identifier}_chakra_wind",
+            group_id = TraitGroupIdChakra,
+            path_icon = $"{PathToTraitIcon}/ChakraNatureWind",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        chakra_wind.base_stats = new BaseStats();
+        chakra_wind.base_stats.set(CustomBaseStatsConstant.CriticalChance, 0.2f);
+        chakra_wind.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.15f);
+        chakra_wind.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.14f);
+        chakra_wind.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.12f);
+
+        chakra_wind.type = TraitType.Positive;
+        chakra_wind.unlock(true);
+
+        AssetManager.traits.add(chakra_wind);
+        addToLocale(chakra_wind.id, "Wind Style", "Wind Chakra Nature", "Deadly precision and speed — the edge of the blade.");
+        #endregion
+
+        #region chakra_earth
+        ActorTrait chakra_earth = new ActorTrait()
+        {
+            id = $"{Identifier}_chakra_earth",
+            group_id = TraitGroupIdChakra,
+            path_icon = $"{PathToTraitIcon}/ChakraNatureEarth",
+            rate_birth = NoChance,
+            rate_inherit = AlwaysChance,
+            rarity = Rarity.R0_Normal,
+        };
+
+        chakra_earth.base_stats = new BaseStats();
+        chakra_earth.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.25f);
+        chakra_earth.base_stats.set(CustomBaseStatsConstant.Armor, 2f);
+        chakra_earth.base_stats.set(CustomBaseStatsConstant.MultiplierHealth, 0.1f);
+
+        chakra_earth.type = TraitType.Positive;
+        chakra_earth.unlock(true);
+
+        AssetManager.traits.add(chakra_earth);
+        addToLocale(chakra_earth.id, "Earth Style", "Earth Chakra Nature", "Strong, unyielding, and resilient power.");
         #endregion
 
     }
