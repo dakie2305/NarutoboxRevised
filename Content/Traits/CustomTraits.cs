@@ -226,6 +226,77 @@ internal static class CustomTraits
         addToLocale(sharingan_3.id, "Sharingan 3", "The last and strongest stage of Sharingan! This is the foundation to become a legend!", "Rename unit to Uchiha Obito or Uchiha Itachi, or add Cell trait to evolve further!");
         #endregion
 
+        #region byakugan
+        ActorTrait byakugan = new ActorTrait()
+        {
+            id = $"{Identifier}_byakugan",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/Byakugan",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R1_Rare,
+            can_be_given = true,
+        };
+
+        byakugan.base_stats = new BaseStats();
+        byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.13f);
+        byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierCrit, 0.35f);
+        byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.1f);
+        byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.1f);
+        byakugan.base_stats.set(CustomBaseStatsConstant.Range, 2f);
+
+        byakugan.type = TraitType.Positive;
+        byakugan.unlock(true);
+
+        byakugan.addOpposites(new List<string> {
+            $"{Identifier}_sharingan_1",
+            $"{Identifier}_sharingan_2",
+            $"{Identifier}_sharingan_3",
+            $"{Identifier}_pure_byakugan"
+        });
+
+        byakugan.action_attack_target = new AttackAction(CustomTraitActions.byakugan1AttackEffect);
+        byakugan.action_special_effect = (WorldAction)Delegate.Combine(byakugan.action_special_effect, new WorldAction(CustomTraitActions.byakuganEvo));
+
+        AssetManager.traits.add(byakugan);
+        addToLocale(byakugan.id, "Byakugan", "Byakugan of the Hyuga with piercing vision! Can throw ash at enemy!", "Can evolve to Pure Byakugan in fiercest battle!");
+        #endregion
+
+        #region pure_byakugan
+        ActorTrait pure_byakugan = new ActorTrait()
+        {
+            id = $"{Identifier}_pure_byakugan",
+            group_id = TraitGroupId,
+            path_icon = $"{PathToTraitIcon}/Byakugan2",
+            rate_birth = NoChance,
+            rate_inherit = NoChance,
+            rarity = Rarity.R2_Epic,
+            can_be_given = true,
+        };
+
+        pure_byakugan.base_stats = new BaseStats();
+        pure_byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierDamage, 0.25f);
+        pure_byakugan.base_stats.set(CustomBaseStatsConstant.CriticalChance, 0.75f);
+        pure_byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.3f);
+        pure_byakugan.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.3f);
+        pure_byakugan.base_stats.set(CustomBaseStatsConstant.Range, 0.4f);
+
+        pure_byakugan.type = TraitType.Positive;
+        pure_byakugan.unlock(true);
+
+        pure_byakugan.addOpposites(new List<string> {
+            $"{Identifier}_sharingan_1",
+            $"{Identifier}_sharingan_2",
+            $"{Identifier}_sharingan_3",
+            $"{Identifier}_byakugan"
+        });
+
+        pure_byakugan.action_attack_target = new AttackAction(CustomTraitActions.byakugan2AttackEffect);
+
+        AssetManager.traits.add(pure_byakugan);
+        addToLocale(pure_byakugan.id, "Pure Byakugan", "Prodigy of the Hyuga! A perfected Byakugan form — grants unmatched clarity and agility", "Can throw ash at enemy!");
+        #endregion
+
     }
     private static void loadCustomLegendTraits()
     {

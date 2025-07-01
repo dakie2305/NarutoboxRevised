@@ -27,6 +27,10 @@
   "uchiha_fan_description": "宇智波一族最危險成員的標誌性武器之一！",
   "Executioners Blade": "斬首大刀",
   "executioners_blade_description": "唯一一把斬首的刻刀，一把屠刀把的巨刃!",
+  "Samehada": "Samehada",
+  "samehada_description": "The one and only living sword! Will stun and slow enemies down!",
+  "Kusanagi": "Kusanagi",
+  "kusanagi_description": "A legendary Japanese sword and one of three Imperial Regalia! Can break the bone of enemies!",
 
   //CustomStatusEffects(.locale_id .locale_description)
   "status_title_darkie_sharingan_eye_1_effect": "寫輪眼",
@@ -110,5 +114,17 @@
   "trait_darkie_anbu_info_2": "Elite shinobi operating in secret. Can use special attack!! Only become Anbu Captain if kill over 80 enemies and over level 5!",
   "trait_darkie_anbu_captain": "Anbu Captain",
   "trait_darkie_anbu_captain_info": "Captain of the Anbu Black Ops!",
-  "trait_darkie_anbu_captain_info_2": "Commanding leader of elite covert missions. Can use special attack!"
+  "trait_darkie_anbu_captain_info_2": "Commanding leader of elite covert missions. Can use special attack!",
+  "trait_darkie_hyuga": "Hyuga",
+  "trait_darkie_hyuga_info": "Hyuga Clan! Users of the Byakugan!",
+  "trait_darkie_hyuga_info_2": "Clan members can have the chance to awake power trait in the fiercest battle!",
+  "trait_darkie_uzumaki": "Uzumaki",
+  "trait_darkie_uzumaki_info": "Uzumaki Clan! Possess immense chakra and sealing prowess",
+  "trait_darkie_uzumaki_info_2": "W.I.P.",
+  "trait_darkie_byakugan": "Byakugan",
+  "trait_darkie_byakugan_info": "Byakugan of the Hyuga with piercing vision! Can throw ash at enemy!",
+  "trait_darkie_byakugan_info_2": "Can evolve to Pure Byakugan in fiercest battle!",
+  "trait_darkie_pure_byakugan": "Pure Byakugan",
+  "trait_darkie_pure_byakugan_info": "Prodigy of the Hyuga! A perfected Byakugan form — grants unmatched clarity and agility!",
+  "trait_darkie_pure_byakugan_info_2": "Can throw ash at enemy!"
 }

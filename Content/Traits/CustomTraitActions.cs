@@ -515,6 +515,32 @@ internal static class CustomTraitActions
 
         return false;
     }
+
+
+    internal static bool byakuganEvo(BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        if (pTarget.a.hasTrait($"{NarutoBoxMain.Identifier}_pure_byakugan"))
+            return false;
+        //Awaken age range
+        if (pTarget.a.data.getAge() < 20 && Randy.randomChance(0.001f))
+        {
+            pTarget.a.removeTrait($"{NarutoBoxMain.Identifier}_byakugan");
+            pTarget.a.addTrait($"{NarutoBoxMain.Identifier}_pure_byakugan");
+            pTarget.a.data.health += 500;
+            return true;
+        }
+        else if (Randy.randomChance(0.1f) || pTarget.a.data.health < pTarget.a.getMaxHealth() / 8)
+        {
+            pTarget.a.removeTrait($"{NarutoBoxMain.Identifier}_byakugan");
+            pTarget.a.addTrait($"{NarutoBoxMain.Identifier}_pure_byakugan");
+            pTarget.a.data.health += 500;
+            return true;
+        }
+        return false;
+    }
+
+
     #endregion
 
     #region Attack Effect
@@ -691,7 +717,28 @@ internal static class CustomTraitActions
         }
         return true;
     }
-
+    internal static bool byakugan1AttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        //I don't have special effect for this skill yet, so right now, vanilla will do
+        if (Randy.randomChance(0.05f) && !pTarget.a.hasStatus($"ash_fever"))
+        {
+            pTarget.a.addStatusEffect($"ash_fever");
+            return true;
+        }
+        return false;
+    }
+    internal static bool byakugan2AttackEffect(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile)
+    {
+        if (pTarget == null || pTarget.a == null || !pTarget.a.isAlive()) return false;
+        //I don't have special effect for this skill yet, so right now, vanilla will do
+        if (Randy.randomChance(0.1f) && !pTarget.a.hasStatus($"ash_fever"))
+        {
+            pTarget.a.addStatusEffect($"ash_fever");
+            return true;
+        }
+        return false;
+    }
     #endregion
 
 
@@ -729,6 +776,8 @@ internal static class CustomTraitActions
         pTarget.a.spawnOn(pTile, 0f);
         return true;
     }
+
+
 
 
     #endregion
