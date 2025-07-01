@@ -730,7 +730,7 @@ internal static class CustomTraits
         ActorTrait hyuga = new ActorTrait()
         {
             id = $"{Identifier}_hyuga",
-            group_id = TraitGroupId,
+            group_id = TraitGroupIdClan,
             path_icon = $"{PathToTraitIcon}/Hyuga",
             rate_birth = NoChance,
             rate_inherit = AlwaysChance,
@@ -764,7 +764,7 @@ internal static class CustomTraits
         ActorTrait uzumaki = new ActorTrait()
         {
             id = $"{Identifier}_uzumaki",
-            group_id = TraitGroupId,
+            group_id = TraitGroupIdClan,
             path_icon = $"{PathToTraitIcon}/Uzumaki",
             rate_birth = NoChance,
             rate_inherit = AlwaysChance,
