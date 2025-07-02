@@ -9,6 +9,8 @@
   "config_enable_clan_name Description": "啓用後單位的名稱將以氏族名稱開頭\n重啓遊戲，以便配置生效！",
   "config_unlock_all_legend_traits": "解鎖所有傳奇特質",
   "config_unlock_all_legend_traits Description": "啓用後所有傳奇級特質將立刻解鎖",
+  "config_enable_auto_favorite": "Auto Favorite Unit",
+  "config_enable_auto_favorite Description": "If enabled, all legend traits will be auto favorite! Favorite can not be removed unless this is disabled. Restart the game so new changes can take effect!",
 
   //CustomTraitActions(idk)
   "Senju": "千手",
