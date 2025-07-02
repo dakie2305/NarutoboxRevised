@@ -4,6 +4,7 @@ using Narutobox;
 using Narutobox.Content;
 using NarutoboxRevised.Content.Config;
 using NeoModLoader.api.attributes;
+using NeoModLoader.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,13 @@ internal static class CustomTraitActions
         if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("senju", StringComparison.OrdinalIgnoreCase))
         {
             //Add prefix clan name: Senju
-            renameToClanName("Senju", pTarget);
+            string clanName = LM.Get("Senju");
+            if (string.IsNullOrEmpty(clanName)) clanName = "Senju";
+            if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
+            {
+                //Add clan name: Senju
+                renameToClanName(clanName, pTarget);
+            }
         }
         return false;
     }
@@ -87,7 +94,12 @@ internal static class CustomTraitActions
         if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("uchiha", StringComparison.OrdinalIgnoreCase))
         {
             //Add prefix clan name: Uchiha
-            renameToClanName("Uchiha", pTarget);
+            string clanName = LM.Get("Uchiha");
+            if (string.IsNullOrEmpty(clanName)) clanName = "Uchiha";
+            if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
+            {
+                renameToClanName(clanName, pTarget);
+            }
         }
 
         return false;
@@ -510,12 +522,13 @@ internal static class CustomTraitActions
             }
         }
 
-        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("hyuga", StringComparison.OrdinalIgnoreCase))
+        string clanName = LM.Get("Hyuga");
+        if (string.IsNullOrEmpty(clanName)) clanName = "Hyuga";
+        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
         {
             //Add clan name: Hyuga
-            renameToClanName("Hyuga", pTarget);
+            renameToClanName(clanName, pTarget);
         }
-
         return false;
     }
 
