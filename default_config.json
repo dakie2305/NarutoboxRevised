@@ -3,7 +3,7 @@
     {
       "Id": "config_enable_clan_name", //Make sure this one exists in locale
       "Type": "SWITCH",
-      "BoolVal": false,
+      "BoolVal": true,
       "Callback": "NarutoBoxConfig:ClanNameEnableSwitchConfigCallBack"
     },
     {
@@ -11,6 +11,12 @@
       "Type": "SWITCH",
       "BoolVal": false,
       "Callback": "NarutoBoxConfig:UnlockLegendTraitsSwitchConfigCallBack"
+    },
+    {
+      "Id": "config_enable_auto_favorite", //Make sure this one exists in locale
+      "Type": "SWITCH",
+      "BoolVal": false,
+      "Callback": "NarutoBoxConfig:AutoFavoriteEnableSwitchConfigCallBack"
     }
   ]
 }

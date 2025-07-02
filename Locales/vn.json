@@ -5,6 +5,9 @@
   "config_unlock_all_legend_traits": "Mở Khóa Huyền Thoại",
   "config_enable_clan_name Description": "Nếu bật thì tên nhân vật sẽ chứa tên của Gia Tộc. Restart game để có tác dụng!",
   "config_unlock_all_legend_traits Description": "Nếu bật thì toàn bộ trait huyền thoại đều sẽ được mở khóa. Restart game để có tác dụng!",
+  "config_enable_auto_favorite": "Tự Động Đánh Dấu Ưu Thích",
+  "config_enable_auto_favorite Description": "Nếu bật thì toàn bộ trait huyền thoại đều sẽ được đánh dấu ưu thích và không thể xoá được trừ khi tắt cài đặt này! Restart game để có tác dụng!",
+
 
   //CustomTraitActions(idk)
   "Senju": "Senju",

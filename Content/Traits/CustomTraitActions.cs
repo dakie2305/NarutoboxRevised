@@ -163,7 +163,8 @@ internal static class CustomTraitActions
         {
             pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_god_body_effect");
         }
-        pTarget.a.data.favorite = true; //Always favorite
+        if (NarutoBoxConfig.EnableAutoFavorite)
+            pTarget.a.data.favorite = true; //Always favorite
         return true;
     }
 
@@ -273,14 +274,16 @@ internal static class CustomTraitActions
         string name = actor.getName();
         if (name == "Uchiha Itachi" || name == "Itachi Uchiha")
         {
-            actor.data.favorite = true;
+            if (NarutoBoxConfig.EnableAutoFavorite)
+                actor.data.favorite = true;
             actor.removeTrait(trait_sharingan3);
             actor.addTrait(trait_itachi);
             actor.data.health += 1000;
         }
         else if (name == "Uchiha Obito" || name == "Obito Uchiha")
         {
-            actor.data.favorite = true;
+            if (NarutoBoxConfig.EnableAutoFavorite)
+                actor.data.favorite = true;
             actor.removeTrait(trait_sharingan3);
             actor.addTrait(trait_obito);
             actor.data.health += 1200;
@@ -342,8 +345,8 @@ internal static class CustomTraitActions
         Actor a = pTarget.a;
         a.removeTrait($"{NarutoBoxMain.Identifier}_obito");
         a.data.setName("Uchiha Madara");
-
-        a.data.favorite = true;
+        if (NarutoBoxConfig.EnableAutoFavorite)
+            a.data.favorite = true;
         if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))
         {
             a.addTrait($"{NarutoBoxMain.Identifier}_final_form");
