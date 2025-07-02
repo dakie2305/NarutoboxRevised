@@ -487,12 +487,20 @@ internal static class CustomTraits
         rank_academy_student.base_stats.set(CustomBaseStatsConstant.Health, 10f);
         rank_academy_student.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.05f);
         rank_academy_student.base_stats.set(CustomBaseStatsConstant.Intelligence, 2f);
+        rank_academy_student.addOpposites(new List<string> {
+            $"{Identifier}_rank_genin",
+            $"{Identifier}_rank_chunin",
+            $"{Identifier}_rank_jonin",
+            $"{Identifier}_anbu",
+            $"{Identifier}_anbu_captain",
+        });
 
         rank_academy_student.type = TraitType.Positive;
         rank_academy_student.unlock(true);
 
         rank_academy_student.action_special_effect = (WorldAction)Delegate.Combine(rank_academy_student.action_special_effect, new WorldAction(CustomTraitActions.rankEvolutionSpecialEffect));
         AssetManager.traits.add(rank_academy_student);
+        addToList(rank_academy_student);
         addToLocale(rank_academy_student.id, "Academy Student", "A trainee at the ninja academy.", "Begin your ninja journey. Can evolve to Genin after kill two enemies!");
         #endregion
 
@@ -507,6 +515,13 @@ internal static class CustomTraits
             rarity = Rarity.R0_Normal,
             can_be_given = true,
         };
+        rank_genin.addOpposites(new List<string> {
+            $"{Identifier}_rank_academy_student",
+            $"{Identifier}_rank_chunin",
+            $"{Identifier}_rank_jonin",
+            $"{Identifier}_anbu",
+            $"{Identifier}_anbu_captain",
+        });
 
         rank_genin.base_stats = new BaseStats();
         rank_genin.base_stats.set(CustomBaseStatsConstant.Damage, 10f);
@@ -518,6 +533,7 @@ internal static class CustomTraits
 
         rank_genin.type = TraitType.Positive;
         rank_genin.unlock(true);
+        addToList(rank_genin);
 
         rank_genin.action_special_effect = (WorldAction)Delegate.Combine(rank_genin.action_special_effect, new WorldAction(CustomTraitActions.rank2EvolutionSpecialEffect));
 
@@ -544,12 +560,18 @@ internal static class CustomTraits
         rank_chunin.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 0.5f);
         rank_chunin.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 0.7f);
         rank_chunin.base_stats.set(CustomBaseStatsConstant.Intelligence, 15f);
+        rank_chunin.addOpposites(new List<string> {
+        $"{Identifier}_rank_academy_student",
+        $"{Identifier}_rank_genin",
+        $"{Identifier}_rank_jonin",
+        $"{Identifier}_anbu",
+        $"{Identifier}_anbu_captain",
+    });
 
         rank_chunin.type = TraitType.Positive;
         rank_chunin.unlock(true);
-
+        addToList(rank_chunin);
         rank_chunin.action_special_effect = (WorldAction)Delegate.Combine(rank_chunin.action_special_effect, new WorldAction(CustomTraitActions.rank3EvolutionSpecialEffect));
-
         AssetManager.traits.add(rank_chunin);
         addToLocale(rank_chunin.id, "Chunin", "A mid-rank shinobi.", "Proven capable in leadership and combat! Can evolve to Jonin after kill 20 enemies!");
         #endregion
@@ -573,6 +595,13 @@ internal static class CustomTraits
         rank_jonin.base_stats.set(CustomBaseStatsConstant.MultiplierSpeed, 1.0f);
         rank_jonin.base_stats.set(CustomBaseStatsConstant.MultiplierAttackSpeed, 1.0f);
         rank_jonin.base_stats.set(CustomBaseStatsConstant.Intelligence, 25f);
+        rank_jonin.addOpposites(new List<string> {
+            $"{Identifier}_rank_academy_student",
+            $"{Identifier}_rank_genin",
+            $"{Identifier}_rank_chunin",
+            $"{Identifier}_anbu",
+            $"{Identifier}_anbu_captain",
+        });
 
         rank_jonin.type = TraitType.Positive;
         rank_jonin.unlock(true);
@@ -580,8 +609,8 @@ internal static class CustomTraits
         rank_jonin.action_special_effect = (WorldAction)Delegate.Combine(rank_jonin.action_special_effect, new WorldAction(CustomTraitActions.joninEvolutionSpecialEffect));
         rank_jonin.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
 
-
         AssetManager.traits.add(rank_jonin);
+        addToList(rank_jonin);
         addToLocale(rank_jonin.id, "Jonin", "An elite shinobi. Veteran of many battles and missions!", "Can use a bit of teleport and burn enemies! Only become Anbu if kill over 50 enemies and over level 5!");
         #endregion
 
@@ -613,13 +642,15 @@ internal static class CustomTraits
             $"{Identifier}_rank_academy_student",
             $"{Identifier}_rank_genin",
             $"{Identifier}_rank_chunin",
-            $"{Identifier}_rank_jonin"
+            $"{Identifier}_rank_jonin",
+            $"{Identifier}_anbu_captain"
         });
 
         anbu_member.action_special_effect = (WorldAction)Delegate.Combine(anbu_member.action_special_effect, new WorldAction(CustomTraitActions.anbuSpecialEffect));
         anbu_member.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
 
         AssetManager.traits.add(anbu_member);
+        addToList(anbu_member);
         addToLocale(anbu_member.id, "Anbu", "Member of the Anbu Black Ops.", "Elite shinobi operating in secret. Can use special attack!");
         #endregion
 
@@ -652,16 +683,17 @@ internal static class CustomTraits
             $"{Identifier}_rank_genin",
             $"{Identifier}_rank_chunin",
             $"{Identifier}_rank_jonin",
-            $"{Identifier}_anbu",
+            $"{Identifier}_anbu"
         });
 
         anbu_captain.action_special_effect = (WorldAction)Delegate.Combine(anbu_captain.action_special_effect, new WorldAction(CustomTraitActions.anbuCaptainSpecialEffect));
         anbu_captain.action_attack_target = new AttackAction(CustomTraitActions.eliteNinjaAttackEffect);
 
         AssetManager.traits.add(anbu_captain);
+        addToList(anbu_captain);
         addToLocale(anbu_captain.id, "Anbu Captain", "Captain of the Anbu Black Ops.", "Commanding leader of elite covert missions. Can use special attack!");
         #endregion
-        
+
 
     }
 
