@@ -6,7 +6,7 @@ using NeoModLoader.General;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 
 namespace NarutoboxRevised.Content.Traits;
 
@@ -41,6 +41,7 @@ internal static class CustomTraits
         loadCustomTraitClans();
         loadCustomLegendTraits();
         loadCustomTraitChakra();
+        populateListOppositeTraits();
     }
 
 
@@ -108,13 +109,17 @@ internal static class CustomTraits
         woodstyle.base_stats.set(CustomBaseStatsConstant.MultiplierMana, 0.3f);
         woodstyle.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
 
-        woodstyle.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+        woodstyle.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3",
+                            $"{Identifier}_byakugan",
+                    $"{Identifier}_pure_byakugan",
+        });
 
         woodstyle.type = TraitType.Positive;
         woodstyle.unlock(true);
         woodstyle.action_special_effect = (WorldAction)Delegate.Combine(woodstyle.action_special_effect, new WorldAction(CustomTraitActions.woodstyleSpecialEffect));
         woodstyle.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
         AssetManager.traits.add(woodstyle);
+        addToList(woodstyle);
         addToLocale(woodstyle.id, "Woodstyle", "Woodstyle No Jutsu! The true leaders of Senju clan, with special abilities of wood and the ultimate bloodline of Senju!");
         #endregion
 
@@ -135,6 +140,7 @@ internal static class CustomTraits
         cell.unlock(true);
         cell.action_special_effect = (WorldAction)Delegate.Combine(cell.action_special_effect, new WorldAction(CustomTraitActions.cellSpecialEffect));
         AssetManager.traits.add(cell);
+        addToList(cell);
         addToLocale(cell.id, "Hashirama's Cell", "The blood cell of The Ninja God! Give this trait to Madara to unlock ultimate form!");
         #endregion
 
@@ -160,10 +166,14 @@ internal static class CustomTraits
         sharingan_1.type = TraitType.Positive;
         sharingan_1.unlock(true);
 
-        sharingan_1.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+        sharingan_1.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3",
+                    $"{Identifier}_byakugan",
+                    $"{Identifier}_pure_byakugan",
+                    $"{Identifier}_woodstyle", 
+        });
         sharingan_1.action_attack_target = new AttackAction(CustomTraitActions.sharingan1AttackEffect);
         sharingan_1.action_special_effect = (WorldAction)Delegate.Combine(sharingan_1.action_special_effect, new WorldAction(CustomTraitActions.sharingan1SpecialEffect));
-
+        addToList(sharingan_1);
         AssetManager.traits.add(sharingan_1);
         addToLocale(sharingan_1.id, "Sharingan 1", "The Eyes Of The Uchiha! Can slow enemy and make them stop whatever they are doing!", "Have small chance to evolve into Sharingan level 2 in fiercest battles or through sheer luck!");
         #endregion
@@ -190,10 +200,14 @@ internal static class CustomTraits
         sharingan_2.type = TraitType.Positive;
         sharingan_2.unlock(true);
 
-        sharingan_2.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_3" });
+        sharingan_2.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_3", 
+            $"{Identifier}_byakugan",
+            $"{Identifier}_pure_byakugan",
+            $"{Identifier}_woodstyle", 
+        });
         sharingan_2.action_attack_target = new AttackAction(CustomTraitActions.sharingan2AttackEffect);
         sharingan_2.action_special_effect = (WorldAction)Delegate.Combine(sharingan_2.action_special_effect, new WorldAction(CustomTraitActions.sharingan2SpecialEffect));
-
+        addToList(sharingan_2);
         AssetManager.traits.add(sharingan_2);
         addToLocale(sharingan_2.id, "Sharingan 2", "The Stage 2 Sharingan! Can slow enemy and make them stop whatever they are doing!", "Have small chance to evolve into Sharingan level 3 in fiercest battles or killed many people, or through sheer luck!");
         #endregion
@@ -220,11 +234,18 @@ internal static class CustomTraits
         sharingan_3.type = TraitType.Positive;
         sharingan_3.unlock(true);
 
-        sharingan_3.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2" });
+        sharingan_3.addOpposites(new List<string> { $"{Identifier}_senju", 
+            $"{Identifier}_sharingan_1", 
+            $"{Identifier}_sharingan_2",
+            $"{Identifier}_pure_byakugan", 
+            $"{Identifier}_byakugan", 
+            $"{Identifier}_woodstyle",
+        });
         sharingan_3.action_attack_target = new AttackAction(CustomTraitActions.sharingan3AttackEffect);
         sharingan_3.action_special_effect = (WorldAction)Delegate.Combine(sharingan_3.action_special_effect, new WorldAction(CustomTraitActions.MangenkyouSpecialEffect));
 
         AssetManager.traits.add(sharingan_3);
+        addToList(sharingan_3);
         addToLocale(sharingan_3.id, "Sharingan 3", "The last and strongest stage of Sharingan! This is the foundation to become a legend!", "Rename unit to Uchiha Obito or Uchiha Itachi, or add Cell trait to evolve further!");
         #endregion
 
@@ -254,13 +275,15 @@ internal static class CustomTraits
             $"{Identifier}_sharingan_1",
             $"{Identifier}_sharingan_2",
             $"{Identifier}_sharingan_3",
-            $"{Identifier}_pure_byakugan"
+            $"{Identifier}_pure_byakugan",
+            $"{Identifier}_woodstyle"
         });
 
         byakugan.action_attack_target = new AttackAction(CustomTraitActions.byakugan1AttackEffect);
         byakugan.action_special_effect = (WorldAction)Delegate.Combine(byakugan.action_special_effect, new WorldAction(CustomTraitActions.byakuganEvo));
 
         AssetManager.traits.add(byakugan);
+        addToList(byakugan);
         addToLocale(byakugan.id, "Byakugan", "Byakugan of the Hyuga with piercing vision! Can throw ash at enemy!", "Can evolve to Pure Byakugan in fiercest battle!");
         #endregion
 
@@ -290,11 +313,12 @@ internal static class CustomTraits
             $"{Identifier}_sharingan_1",
             $"{Identifier}_sharingan_2",
             $"{Identifier}_sharingan_3",
-            $"{Identifier}_byakugan"
+            $"{Identifier}_byakugan",
+            $"{Identifier}_woodstyle"
         });
 
         pure_byakugan.action_attack_target = new AttackAction(CustomTraitActions.byakugan2AttackEffect);
-
+        addToList(pure_byakugan);
         AssetManager.traits.add(pure_byakugan);
         addToLocale(pure_byakugan.id, "Pure Byakugan", "Prodigy of the Hyuga! A perfected Byakugan form — grants unmatched clarity and agility", "Can throw ash at enemy!");
         #endregion
@@ -324,13 +348,18 @@ internal static class CustomTraits
         hashirama.base_stats.set(CustomBaseStatsConstant.Speed, 30f);
         hashirama.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
 
-        hashirama.addOpposites(new List<string> { $"{Identifier}_uchiha", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3" });
+        hashirama.addOpposites(new List<string> { $"{Identifier}_uchiha", 
+            $"{Identifier}_obito", $"{Identifier}_itachi", 
+            $"{Identifier}_madara", $"{Identifier}_final_form", 
+            $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", 
+            $"{Identifier}_sharingan_3" });
 
         hashirama.type = TraitType.Positive;
         hashirama.unlock(true);
         hashirama.action_special_effect = (WorldAction)Delegate.Combine(hashirama.action_special_effect, new WorldAction(CustomTraitActions.hashiramaSpecialEffect));
         hashirama.action_attack_target = new AttackAction(CustomTraitActions.woodstyleAttackEffect);
         AssetManager.traits.add(hashirama);
+        addToList(hashirama);
         addToLocale(hashirama.id, "Hashirama", "Senju Hashirama! The Ninja God has appeared!", "Rename someone with Woodstyle trait to Senju Hashirama to get this!");
         #endregion
 
@@ -358,11 +387,15 @@ internal static class CustomTraits
         itachi.type = TraitType.Positive;
         itachi.unlock(true);
 
-        itachi.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_obito", $"{Identifier}_madara", $"{Identifier}_final_form" });
+        itachi.addOpposites(new List<string> { $"{Identifier}_senju", 
+            $"{Identifier}_sharingan_1", 
+            $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", 
+            $"{Identifier}_obito", $"{Identifier}_madara", $"{Identifier}_final_form" });
 
         itachi.action_attack_target = new AttackAction(CustomTraitActions.itachiSpecialAttack);
 
         AssetManager.traits.add(itachi);
+        addToList(itachi);
         addToLocale(itachi.id, "Itachi", "The Uchiha Itachi! Extremely deadly legend with supreme Black Fire attack!", "Unlock by evolving to Sharingan 3 and renaming to Uchiha Itachi!");
         #endregion
 
@@ -397,6 +430,7 @@ internal static class CustomTraits
         obito.action_death = new WorldAction(CustomTraitActions.obitoDeathEffect);
 
         AssetManager.traits.add(obito);
+        addToList(obito);
         addToLocale(obito.id, "Obito", "The Uchiha Obito! Extremely powerful and can be evasive, will become Madara if defeated!", "Unlock by evolving to Sharingan 3 and renaming to Uchiha Obito!");
         #endregion
 
@@ -422,7 +456,11 @@ internal static class CustomTraits
         madara.base_stats.set(CustomBaseStatsConstant.Mass, 100f);
         madara.base_stats.set(CustomBaseStatsConstant.Mana, 100f);
 
-        madara.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", $"{Identifier}_final_form" });
+        madara.addOpposites(new List<string> { $"{Identifier}_senju", 
+            $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", 
+            $"{Identifier}_hashirama",
+            $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", 
+            $"{Identifier}_final_form" });
 
         madara.type = TraitType.Positive;
         madara.unlock(true);
@@ -431,6 +469,7 @@ internal static class CustomTraits
         madara.action_special_effect = (WorldAction)Delegate.Combine(madara.action_special_effect, new WorldAction(CustomTraitActions.madaraSpecialEffect));
 
         AssetManager.traits.add(madara);
+        addToList(madara);
         addToLocale(madara.id, "Madara", "The Uchiha Legend — Madara!", "Unlock by defeating Obito!");
         #endregion
 
@@ -459,11 +498,15 @@ internal static class CustomTraits
         madaraFinal.type = TraitType.Positive;
         madaraFinal.unlock(true);
 
-        madaraFinal.addOpposites(new List<string> { $"{Identifier}_senju", $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2", $"{Identifier}_sharingan_3", $"{Identifier}_itachi", $"{Identifier}_obito", $"{Identifier}_madara" });
+        madaraFinal.addOpposites(new List<string> { $"{Identifier}_senju", 
+            $"{Identifier}_sharingan_1", $"{Identifier}_sharingan_2",
+            $"{Identifier}_sharingan_3", $"{Identifier}_itachi",  $"{Identifier}_hashirama",
+            $"{Identifier}_obito", $"{Identifier}_madara" });
 
         madaraFinal.action_attack_target = new AttackAction(CustomTraitActions.tengaiShinseiAttack);
 
         AssetManager.traits.add(madaraFinal);
+        addToList(madaraFinal);
         addToLocale(madaraFinal.id, "Madara Final Form", "God of War! Madara in his Rinnegan-powered final form!", "Fuse Madara with Hashirama's cell to unlock this!");
         #endregion
     }
@@ -998,5 +1041,34 @@ internal static class CustomTraits
     {
         if(!myListTraits.Contains(trait))
             myListTraits.Add(trait);
+    }
+
+    /// <summary>
+    /// Need to fill in list trait's opposite_traits
+    /// </summary>
+    private static void populateListOppositeTraits()
+    {
+        if (myListTraits.Any())
+        {
+            foreach (var trait in myListTraits)
+            {
+                List<string>? curentTraitOppositeList = trait.opposite_list;
+                if (curentTraitOppositeList.Any())
+                {
+                    // Ensure opposite_traits list exists
+                    if (trait.opposite_traits == null)
+                        trait.opposite_traits = new();
+                    foreach (var opposite in trait.opposite_list)
+                    {
+                        var matchedTrait = myListTraits.FirstOrDefault(t => t.id == opposite);
+                        if (matchedTrait != null && !trait.opposite_traits.Contains(matchedTrait))
+                        {
+                            trait.opposite_traits.Add(matchedTrait);
+                        }
+                    }
+                }
+
+            }
+        }
     }
 }
