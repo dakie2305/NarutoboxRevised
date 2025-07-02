@@ -3,7 +3,9 @@ using HarmonyLib.Tools;
 using Narutobox;
 using Narutobox.Content;
 using NarutoboxRevised.Content.Config;
+using NeoModLoader.api;
 using NeoModLoader.api.attributes;
+using NeoModLoader.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +48,7 @@ internal static class CustomTraitActions
         if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("senju", StringComparison.OrdinalIgnoreCase))
         {
             //Add prefix clan name: Senju
-            renameToClanName("Senju", pTarget);
+            renameToClanName(LM.Get("Senju"), pTarget);
         }
         return false;
     }
@@ -87,7 +89,7 @@ internal static class CustomTraitActions
         if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("uchiha", StringComparison.OrdinalIgnoreCase))
         {
             //Add prefix clan name: Uchiha
-            renameToClanName("Uchiha", pTarget);
+            renameToClanName(LM.Get("Uchiha"), pTarget);
         }
 
         return false;
@@ -112,14 +114,14 @@ internal static class CustomTraitActions
             return false;
 
         string actorName = actor.getName();
-        if (actorName == "Hashirama Senju" || actorName == "Senju Hashirama")
+        if (actorName == LM.Get("Hashirama Senju") || actorName == LM.Get("Senju Hashirama"))
         {
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
         else if (Randy.randomChance(0.001f))
         {
-            actor.data.setName("Senju Hashirama");
+            actor.data.setName(LM.Get("Senju Hashirama"));
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
@@ -272,7 +274,7 @@ internal static class CustomTraitActions
         }
 
         string name = actor.getName();
-        if (name == "Uchiha Itachi" || name == "Itachi Uchiha")
+        if (name == LM.Get("Uchiha Itachi") || name == LM.Get("Itachi Uchiha"))
         {
             if (NarutoBoxConfig.EnableAutoFavorite)
                 actor.data.favorite = true;
@@ -280,7 +282,7 @@ internal static class CustomTraitActions
             actor.addTrait(trait_itachi);
             actor.data.health += 1000;
         }
-        else if (name == "Uchiha Obito" || name == "Obito Uchiha")
+        else if (name == LM.Get("Uchiha Obito") || name == LM.Get("Obito Uchiha"))
         {
             if (NarutoBoxConfig.EnableAutoFavorite)
                 actor.data.favorite = true;
@@ -298,14 +300,14 @@ internal static class CustomTraitActions
                     actor.removeTrait(trait_sharingan3);
                     actor.addTrait(trait_itachi);
                     actor.data.health += 1000;
-                    actor.data.setName("Uchiha Itachi");
+                    actor.data.setName(LM.Get("Uchiha Itachi"));
                 }
                 else if (Randy.randomChance(0.0001f))
                 {
                     actor.removeTrait(trait_sharingan3);
                     actor.addTrait(trait_obito);
                     actor.data.health += 1000;
-                    actor.data.setName("Uchiha Obito");
+                    actor.data.setName(LM.Get("Uchiha Obito"));
                 }
             }
         }
@@ -344,7 +346,7 @@ internal static class CustomTraitActions
 
         Actor a = pTarget.a;
         a.removeTrait($"{NarutoBoxMain.Identifier}_obito");
-        a.data.setName("Uchiha Madara");
+        a.data.setName(LM.Get("Uchiha Madara"));
         if (NarutoBoxConfig.EnableAutoFavorite)
             a.data.favorite = true;
         if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))
@@ -513,7 +515,7 @@ internal static class CustomTraitActions
         if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("hyuga", StringComparison.OrdinalIgnoreCase))
         {
             //Add clan name: Hyuga
-            renameToClanName("Hyuga", pTarget);
+            renameToClanName(LM.Get("Hyuga"), pTarget);
         }
 
         return false;
