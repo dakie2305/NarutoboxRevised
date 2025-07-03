@@ -43,12 +43,10 @@ internal static class CustomTraitActions
             pTarget.a.spawnParticle(Toolbox.color_heal);
             pTarget.a.spawnParticle(Toolbox.color_heal);
         }
-
-        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("senju", StringComparison.OrdinalIgnoreCase))
+        string clanName = string.IsNullOrEmpty(LM.Get("Senju")) ? LM.Get("Senju") : "Senju"; 
+        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
         {
             //Add prefix clan name: Senju
-            string clanName = LM.Get("Senju");
-            if (string.IsNullOrEmpty(clanName)) clanName = "Senju";
             if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
             {
                 //Add clan name: Senju
@@ -90,16 +88,11 @@ internal static class CustomTraitActions
                 return true;
             }
         }
-
-        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains("uchiha", StringComparison.OrdinalIgnoreCase))
+        string clanName = string.IsNullOrEmpty(LM.Get("Uchiha")) ? LM.Get("Uchiha") : "Uchiha";
+        if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
         {
             //Add prefix clan name: Uchiha
-            string clanName = LM.Get("Uchiha");
-            if (string.IsNullOrEmpty(clanName)) clanName = "Uchiha";
-            if (NarutoBoxConfig.EnableClanFamilyName && !pTarget.a.getName().Contains(clanName, StringComparison.OrdinalIgnoreCase))
-            {
-                renameToClanName(clanName, pTarget);
-            }
+            renameToClanName(clanName, pTarget);
         }
 
         return false;
