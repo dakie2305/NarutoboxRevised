@@ -755,7 +755,7 @@ internal static class CustomTraitActions
         string actorName = pTarget.a.getName();
         if (!actorName.Contains(clanName, StringComparison.OrdinalIgnoreCase))
         {
-            pTarget.a.data.setName($"{clanName} {actorName}");
+            pTarget.a.data.setName($"{actorName} {clanName}");
         }
     }
 
