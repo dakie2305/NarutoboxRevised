@@ -124,14 +124,16 @@ internal static class CustomTraitActions
             return false;
 
         string actorName = actor.getName();
-        if (actorName == "Hashirama Senju" || actorName == "Senju Hashirama")
+        string hashirama = !string.IsNullOrEmpty(LM.Get("Hashirama Senju")) ? LM.Get("Hashirama Senju") : "Hashirama Senju";
+
+        if (actorName == hashirama)
         {
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
         else if (Randy.randomChance(0.001f))
         {
-            actor.data.setName("Senju Hashirama");
+            actor.data.setName(hashirama);
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
@@ -284,7 +286,10 @@ internal static class CustomTraitActions
         }
 
         string name = actor.getName();
-        if (name == "Uchiha Itachi" || name == "Itachi Uchiha")
+        string itachi = !string.IsNullOrEmpty(LM.Get("Itachi Uchiha")) ? LM.Get("Itachi Uchiha") : "Itachi Uchiha";
+        string obito = !string.IsNullOrEmpty(LM.Get("Obito Uchiha")) ? LM.Get("Obito Uchiha") : "Obito Uchiha";
+
+        if (name == itachi)
         {
             if (NarutoBoxConfig.EnableAutoFavorite)
                 actor.data.favorite = true;
@@ -292,7 +297,7 @@ internal static class CustomTraitActions
             actor.addTrait(trait_itachi);
             actor.data.health += 1000;
         }
-        else if (name == "Uchiha Obito" || name == "Obito Uchiha")
+        else if (name == obito)
         {
             if (NarutoBoxConfig.EnableAutoFavorite)
                 actor.data.favorite = true;
@@ -310,14 +315,14 @@ internal static class CustomTraitActions
                     actor.removeTrait(trait_sharingan3);
                     actor.addTrait(trait_itachi);
                     actor.data.health += 1000;
-                    actor.data.setName("Uchiha Itachi");
+                    actor.data.setName(itachi);
                 }
                 else if (Randy.randomChance(0.0001f))
                 {
                     actor.removeTrait(trait_sharingan3);
                     actor.addTrait(trait_obito);
                     actor.data.health += 1000;
-                    actor.data.setName("Uchiha Obito");
+                    actor.data.setName(obito);
                 }
             }
         }
@@ -356,7 +361,8 @@ internal static class CustomTraitActions
 
         Actor a = pTarget.a;
         a.removeTrait($"{NarutoBoxMain.Identifier}_obito");
-        a.data.setName("Uchiha Madara");
+        string madara = !string.IsNullOrEmpty(LM.Get("Madara Uchiha")) ? LM.Get("Madara Uchiha") : "Madara Uchiha";
+        a.data.setName(madara);
         if (NarutoBoxConfig.EnableAutoFavorite)
             a.data.favorite = true;
         if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))
