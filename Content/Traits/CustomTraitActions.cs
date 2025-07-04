@@ -692,7 +692,7 @@ internal static class CustomTraitActions
         //shinra tensei
         if (Randy.randomChance(0.1f))
         {
-            EffectsLibrary.spawn("fx_nuke_flash", pTarget.current_tile);    //flash
+            var ef = EffectsLibrary.spawnAtTile("fx_CustomAntimatter_effect", pTarget.current_tile, 0.1f);    //flash
             EffectsLibrary.spawnExplosionWave(pTile.posV3, 1f, 1f);
             World.world.applyForceOnTile(pTile: pTarget.current_tile, pByWho: pSelf);
         }
@@ -701,6 +701,7 @@ internal static class CustomTraitActions
         if (Randy.randomChance(0.1f))
         {
             pSelf.a.addStatusEffect($"{NarutoBoxMain.Identifier}_black_shield_effect");
+            pSelf.a.addStatusEffect($"{NarutoBoxMain.Identifier}_full_susano_effect");
         }
 
         //switch place with target
