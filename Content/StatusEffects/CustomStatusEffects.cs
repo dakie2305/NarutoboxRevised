@@ -352,8 +352,10 @@ namespace NarutoboxRevised.Content.StatusEffects
 
         private static void addToLocale(string id, string name, string description)
         {
-            LM.AddToCurrentLocale($"status_title_{id}", name);
-            LM.AddToCurrentLocale($"status_description_{id}", description);
+            //Already have locale files, so this is not needed
+
+            //LM.AddToCurrentLocale($"status_title_{id}", name);
+            //LM.AddToCurrentLocale($"status_description_{id}", description);
         }
     }
 }
