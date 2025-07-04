@@ -17,6 +17,12 @@
       "Type": "SWITCH",
       "BoolVal": false,
       "Callback": "NarutoBoxConfig:AutoFavoriteEnableSwitchConfigCallBack"
+    },
+    {
+      "Id": "config_enable_force_rename", //Make sure this one exists in locale
+      "Type": "SWITCH",
+      "BoolVal": true,
+      "Callback": "NarutoBoxConfig:ForceRenameSwitchConfigCallBack"
     }
   ]
 }

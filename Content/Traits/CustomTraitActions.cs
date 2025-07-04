@@ -118,7 +118,6 @@ internal static class CustomTraitActions
 
         string actorName = actor.getName();
         string hashirama = !string.IsNullOrEmpty(LM.Get("Hashirama Senju")) ? LM.Get("Hashirama Senju") : "Hashirama Senju";
-
         if (actorName == hashirama)
         {
             actor.addTrait(hashiramaTrait);
@@ -126,7 +125,8 @@ internal static class CustomTraitActions
         }
         else if (Randy.randomChance(0.001f))
         {
-            actor.data.setName(hashirama);
+            if (NarutoBoxConfig.EnableForceRename)
+                actor.data.setName(hashirama);
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
@@ -308,14 +308,16 @@ internal static class CustomTraitActions
                     actor.removeTrait(trait_sharingan3);
                     actor.addTrait(trait_itachi);
                     actor.data.health += 1000;
-                    actor.data.setName(itachi);
+                    if (NarutoBoxConfig.EnableForceRename)
+                        actor.data.setName(itachi);
                 }
                 else if (Randy.randomChance(0.0001f))
                 {
                     actor.removeTrait(trait_sharingan3);
                     actor.addTrait(trait_obito);
                     actor.data.health += 1000;
-                    actor.data.setName(obito);
+                    if (NarutoBoxConfig.EnableForceRename)
+                        actor.data.setName(obito);
                 }
             }
         }
@@ -355,7 +357,8 @@ internal static class CustomTraitActions
         Actor a = pTarget.a;
         a.removeTrait($"{NarutoBoxMain.Identifier}_obito");
         string madara = !string.IsNullOrEmpty(LM.Get("Madara Uchiha")) ? LM.Get("Madara Uchiha") : "Madara Uchiha";
-        a.data.setName(madara);
+        if (NarutoBoxConfig.EnableForceRename)
+            a.data.setName(madara);
         if (NarutoBoxConfig.EnableAutoFavorite)
             a.data.favorite = true;
         if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))

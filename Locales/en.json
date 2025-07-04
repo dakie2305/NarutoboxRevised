@@ -7,6 +7,8 @@
   "config_enable_clan_name Description": "If enabled, unit's name will contains Clan Name. Restart the game so new changes can take effect!",
   "config_unlock_all_legend_traits Description": "If enabled, all legend traits will be unlocked and can be given freely. Restart the game so new changes can take effect!",
   "config_enable_auto_favorite Description": "If enabled, all legend traits will be auto favorite! Favorite can not be removed unless this is disabled. Restart the game so new changes can take effect!",
+  "config_enable_force_rename": "Force Rename Unit",
+  "config_enable_force_rename Description": "If enabled, legend traits will be automatically renamed to match their trait! Restart the game so new changes can take effect!",
 
   //CustomTraitActions(idk)
   "Senju": "Senju",

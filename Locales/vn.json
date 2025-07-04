@@ -7,7 +7,8 @@
   "config_unlock_all_legend_traits Description": "Nếu bật thì toàn bộ trait huyền thoại đều sẽ được mở khóa. Restart game để có tác dụng!",
   "config_enable_auto_favorite": "Tự Động Đánh Dấu Ưu Thích",
   "config_enable_auto_favorite Description": "Nếu bật thì toàn bộ trait huyền thoại đều sẽ được đánh dấu ưu thích và không thể xoá được trừ khi tắt cài đặt này! Restart game để có tác dụng!",
-
+  "config_enable_force_rename": "Ghi Đè Tên Nhân Vật",
+  "config_enable_force_rename Description": "Nếu bật thì nhân vật có đặc tính huyền thoại sẽ tự động chuyển tên! Restart game để có tác dụng!",
 
   //CustomTraitActions(idk)
   "Senju": "Senju",

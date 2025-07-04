@@ -11,6 +11,8 @@
   "config_unlock_all_legend_traits Description": "启用后火影忍者盒的所有传奇级特质将立刻解锁",
   "config_enable_auto_favorite": "火影传奇自动收藏",
   "config_enable_auto_favorite Description": "启用后具备火影忍者盒的传奇特质都将自动进入收藏夹！禁用后相关收藏才能删除\n重启游戏，以便配置生效！",
+  "config_enable_force_rename": "Force Rename Unit",
+  "config_enable_force_rename Description": "If enabled, legend traits will be automatically renamed to match their trait! Restart the game so new changes can take effect!",
 
   //CustomTraitActions(idk)
   "Senju": "千手",

@@ -18,6 +18,7 @@ namespace NarutoboxRevised.Content.Config
 
         public static bool EnableClanFamilyName { get; set; } = false;
         public static bool EnableAutoFavorite { get; set; } = false;
+        public static bool EnableForceRename { get; set; } = false;
         public static bool UnlockLegendTraits { get; set; } = false;
 
 
@@ -37,6 +38,11 @@ namespace NarutoboxRevised.Content.Config
         {
             EnableAutoFavorite = pCurrentValue;
             NarutoBoxMain.LogInfo($"Set Enable Auto Favorite unit to '{EnableAutoFavorite}'");
+        }
+        public static void ForceRenameSwitchConfigCallBack(bool pCurrentValue)
+        {
+            UnlockLegendTraits = pCurrentValue;
+            NarutoBoxMain.LogInfo($"Set force rename to '{EnableForceRename}'");
         }
 
     }
