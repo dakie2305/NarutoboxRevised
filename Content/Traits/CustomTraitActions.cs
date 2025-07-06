@@ -363,8 +363,8 @@ internal static class CustomTraitActions
             a.data.favorite = true;
         if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))
         {
-            a.addTrait($"{NarutoBoxMain.Identifier}_final_form");
             a.removeTrait($"{NarutoBoxMain.Identifier}_madara");
+            a.addTrait($"{NarutoBoxMain.Identifier}_final_form");
             a.data.health += 8000;
         }
 
