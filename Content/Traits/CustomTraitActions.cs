@@ -123,7 +123,7 @@ internal static class CustomTraitActions
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
-        else if (Randy.randomChance(0.001f))
+        else if (Randy.randomChance(0.001f) && actor.data.kills > 20)
         {
             if (NarutoBoxConfig.EnableForceRename)
                 actor.data.setName(hashirama);
