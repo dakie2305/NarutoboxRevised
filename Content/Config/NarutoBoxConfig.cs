@@ -41,7 +41,7 @@ namespace NarutoboxRevised.Content.Config
         }
         public static void ForceRenameSwitchConfigCallBack(bool pCurrentValue)
         {
-            UnlockLegendTraits = pCurrentValue;
+            EnableForceRename = pCurrentValue;
             NarutoBoxMain.LogInfo($"Set force rename to '{EnableForceRename}'");
         }
 
