@@ -140,7 +140,7 @@ internal static class CustomTraitActions
 
         var cityLeader = actor.city.leader;
 
-        if (cityLeader.hasTrait(woodstyleTrait) && !cityLeader.hasTrait(uchihaTrait))
+        if (!cityLeader.hasTrait(woodstyleTrait) && !cityLeader.hasTrait(uchihaTrait))
         {
             if (actor != actor.city.kingdom.king && actor != cityLeader)
             {
