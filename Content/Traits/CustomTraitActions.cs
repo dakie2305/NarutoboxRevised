@@ -645,8 +645,8 @@ internal static class CustomTraitActions
         {
             pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_sharingan_eye_1_effect");
         }
-        else if (Randy.randomChance(0.3f))
-            pTarget.a.addStatusEffect($"{NarutoBoxMain.Identifier}_kamui_effect");
+        else if (Randy.randomChance(0.1f))
+            pSelf.a.addStatusEffect($"{NarutoBoxMain.Identifier}_kamui_effect");
         //he can banish other to somewhere else
         else if (Randy.randomChance(0.02f))
             ActionLibrary.teleportRandom(pSelf, pTarget, null);
