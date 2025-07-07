@@ -104,7 +104,7 @@ namespace NarutoboxRevised.Content.StatusEffects
             {
                 id = $"{Identifier}_gen_effect",
                 render_priority = 5,
-                duration = 999f,
+                duration = 30f,
                 animated = true,
                 is_animated_in_pause = true,
                 can_be_flipped = true,
@@ -124,7 +124,7 @@ namespace NarutoboxRevised.Content.StatusEffects
             genEffect.locale_description = $"status_description_{genEffect.id}";
 
             genEffect.base_stats = new();
-            genEffect.base_stats.set(CustomBaseStatsConstant.Armor, 100f);
+            genEffect.base_stats.set(CustomBaseStatsConstant.Armor, -100f);
 
             genEffect.sprite_list = SpriteTextureLoader.getSpriteList($"effects/{genEffect.texture}", false);
 
@@ -139,7 +139,7 @@ namespace NarutoboxRevised.Content.StatusEffects
             {
                 id = $"{Identifier}_kamui_effect",
                 render_priority = 5,
-                duration = 999f,
+                duration = 30f,
                 animated = true,
                 is_animated_in_pause = true,
                 can_be_flipped = true,
