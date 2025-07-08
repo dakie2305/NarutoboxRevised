@@ -24,7 +24,7 @@ internal static class CustomTraits
 
 
     private static int NoChance = 0;
-    private static int Rare = 3;
+    private static int Rare = 1;
     private static int LowChance = 15;
     private static int MediumChance = 30;
     private static int ExtraChance = 45;
@@ -909,7 +909,7 @@ internal static class CustomTraits
             id = $"{Identifier}_chakra_fire",
             group_id = TraitGroupIdChakra,
             path_icon = $"{PathToTraitIcon}/ChakraNatureFire",
-            rate_birth = NoChance,
+            rate_birth = Rare,
             rate_inherit = AlwaysChance,
             rarity = Rarity.R0_Normal,
             can_be_given = true,
@@ -934,7 +934,7 @@ internal static class CustomTraits
             id = $"{Identifier}_chakra_water",
             group_id = TraitGroupIdChakra,
             path_icon = $"{PathToTraitIcon}/ChakraNatureWater",
-            rate_birth = NoChance,
+            rate_birth = Rare,
             rate_inherit = AlwaysChance,
             rarity = Rarity.R0_Normal,
         };
@@ -958,7 +958,7 @@ internal static class CustomTraits
             id = $"{Identifier}_chakra_lightning",
             group_id = TraitGroupIdChakra,
             path_icon = $"{PathToTraitIcon}/ChakraNatureLightening",
-            rate_birth = NoChance,
+            rate_birth = Rare,
             rate_inherit = AlwaysChance,
             rarity = Rarity.R0_Normal,
         };
@@ -983,7 +983,7 @@ internal static class CustomTraits
             id = $"{Identifier}_chakra_wind",
             group_id = TraitGroupIdChakra,
             path_icon = $"{PathToTraitIcon}/ChakraNatureWind",
-            rate_birth = NoChance,
+            rate_birth = Rare,
             rate_inherit = AlwaysChance,
             rarity = Rarity.R0_Normal,
         };
@@ -1008,7 +1008,7 @@ internal static class CustomTraits
             id = $"{Identifier}_chakra_earth",
             group_id = TraitGroupIdChakra,
             path_icon = $"{PathToTraitIcon}/ChakraNatureEarth",
-            rate_birth = NoChance,
+            rate_birth = Rare,
             rate_inherit = AlwaysChance,
             rarity = Rarity.R0_Normal,
         };
@@ -1037,10 +1037,31 @@ internal static class CustomTraits
         //LM.AddToCurrentLocale($"trait_{id}_info_2", description_2);
     }
 
+    /// <summary>
+    /// Traits need to be properly registered to the birth pool so the birth rate can works properly.
+    /// This may change in the future version, but for now, this is how it works
+    /// </summary>
+    /// <param name="trait"></param>
+    private static void reAddToPotTraitBirth(ActorTrait trait)
+    {
+        if (!myListTraits.Contains(trait))
+            myListTraits.Add(trait);
+        if (trait.rate_birth != 0)
+        {
+            for (int i = 0; i < trait.rate_birth; i++)
+            {
+                AssetManager.traits.pot_traits_birth.Add(trait);
+            }
+        }
+    }
+
     private static void addToList(ActorTrait trait)
     {
         if(!myListTraits.Contains(trait))
+        {
             myListTraits.Add(trait);
+            reAddToPotTraitBirth(trait);
+        }
     }
 
     /// <summary>
