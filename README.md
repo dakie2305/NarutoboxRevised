@@ -1,6 +1,6 @@
 # Narutobox Revised
 
-An extensive custom traits and weapon with anime theme for **Super Worldbox**, now updated to work with game version **0.50.5**.
+An extensive custom traits and weapon with anime theme for **Super Worldbox**, now updated to work with game version **0.51.2**.
 
 ---
 

@@ -126,7 +126,7 @@ internal static class CustomTraitActions
         else if (Randy.randomChance(0.001f) && actor.data.kills > 20)
         {
             if (NarutoBoxConfig.EnableForceRename)
-                actor.data.setName(hashirama);
+                actor.data.name = hashirama;
             actor.addTrait(hashiramaTrait);
             actor.data.health += 2500;
         }
@@ -309,7 +309,7 @@ internal static class CustomTraitActions
                     actor.addTrait(trait_itachi);
                     actor.data.health += 1000;
                     if (NarutoBoxConfig.EnableForceRename)
-                        actor.data.setName(itachi);
+                        actor.data.name = itachi;
                 }
                 else if (Randy.randomChance(0.0001f))
                 {
@@ -317,7 +317,7 @@ internal static class CustomTraitActions
                     actor.addTrait(trait_obito);
                     actor.data.health += 1000;
                     if (NarutoBoxConfig.EnableForceRename)
-                        actor.data.setName(obito);
+                        actor.data.name = obito;
                 }
             }
         }
@@ -358,7 +358,7 @@ internal static class CustomTraitActions
         a.removeTrait($"{NarutoBoxMain.Identifier}_obito");
         string madara = !string.IsNullOrEmpty(LM.Get("Madara Uchiha")) ? LM.Get("Madara Uchiha") : "Madara Uchiha";
         if (NarutoBoxConfig.EnableForceRename)
-            a.data.setName(madara);
+            a.data.name = madara;
         if (NarutoBoxConfig.EnableAutoFavorite)
             a.data.favorite = true;
         if (a.hasTrait($"{NarutoBoxMain.Identifier}_cell"))
@@ -769,7 +769,7 @@ internal static class CustomTraitActions
         string actorName = pTarget.a.getName();
         if (!actorName.Contains(clanName, StringComparison.OrdinalIgnoreCase))
         {
-            pTarget.a.data.setName($"{actorName} {clanName}");
+            pTarget.a.data.name = $"{actorName} {clanName}";
         }
     }
 
